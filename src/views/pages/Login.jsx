@@ -18,7 +18,7 @@ function Login({ classes }) {
             <div className="page-login--content-container">
                 <Typography variant="h5">Please login with Spotify</Typography>
 
-                <Typography variant="body1" className={classes.textBody}>
+                <Typography className={classes.textBody}>
                     This application uses your Spotify account to search artists and albums
                 </Typography>
 
