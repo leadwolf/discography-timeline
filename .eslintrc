@@ -20,7 +20,7 @@
         "func-names": 0,
         "prefer-destructuring": 1,
         "no-underscore-dangle": 0,
-        "import/prefer-default-export": 1,
+        "import/prefer-default-export": 0,
         "no-unused-vars": 1,
         "react/destructuring-assignment": 1,
         "no-return-assign": ["warn", "except-parens"]
