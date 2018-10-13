@@ -1,8 +1,8 @@
 import './App.scss';
 import React from 'react';
 
-import { ThemeProvider } from './components/app/ThemeProvider';
-import Navbar from './components/navigation/Navbar';
+import { ThemeProvider } from './views/components/app/ThemeProvider';
+import Navbar from './views/components/navigation/Navbar';
 
 const App = () => (
     <ThemeProvider>
