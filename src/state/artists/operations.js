@@ -9,9 +9,18 @@ const search = query => dispatch => {
         return dispatch(authActions.logout());
     }
 
-    spotifyApi.searchArtists(query).then(res => {
-        return dispatch(actions.searchSuccess(res));
-    });
+    spotifyApi
+        .searchArtists(query)
+        .then(res => {
+            const {
+                body: { artists },
+            } = res;
+
+            return dispatch(actions.searchSuccess(artists));
+        })
+        .catch(err => {
+            return dispatch(actions.searchFail(err.toString()));
+        });
 };
 
 const debouncedSearch = debounce(search);
