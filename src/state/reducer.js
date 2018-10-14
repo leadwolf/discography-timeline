@@ -6,11 +6,15 @@ import { reducer as artistsReducer } from './artists/reducer';
 import { helpers } from './auth';
 import { initialState, reducer as authReducer } from './auth/reducer';
 
+import { spotifyApi } from './spotify';
+
 const transformAuth = createTransform(
     inboundState => inboundState,
 
     outboundState => {
         console.log(helpers.isAuth(outboundState));
+
+        spotifyApi.setAccessToken(outboundState.access_token);
 
         return helpers.notAuth(outboundState) ? initialState : outboundState;
     },
