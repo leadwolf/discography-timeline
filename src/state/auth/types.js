@@ -1,4 +1,6 @@
-const LOGIN_FAILURE = '/app/login/failure';
-const LOGIN_SUCCESS = '/app/login/success';
+const LOGIN_FAILURE = '/app/auth/login/failure';
+const LOGIN_SUCCESS = '/app/auth/login/success';
 
-export { LOGIN_FAILURE, LOGIN_SUCCESS };
+const LOGOUT = '/app/auth/logout';
+
+export { LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT };

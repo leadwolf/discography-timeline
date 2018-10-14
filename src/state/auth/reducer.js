@@ -14,10 +14,9 @@ const reducer = (state = initialState, action) => {
         case types.LOGIN_FAILURE:
             return { ...initialState };
         case types.LOGIN_SUCCESS:
-            return {
-                ...state,
-                ...action.payload,
-            };
+            return { ...state, ...action.payload };
+        case types.LOGOUT:
+            return { ...initialState };
     }
 };
 
