@@ -1,5 +1,5 @@
 import { types } from '.';
-import { authorizeURL } from './spotify';
+import { authorizeURL } from '../spotify';
 
 const initialState = {
     authorizeURL,

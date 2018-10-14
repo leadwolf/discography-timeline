@@ -1,7 +1,9 @@
 import './home.scss';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { operations } from '../../../state/artists';
 import { Search } from '../../components/Search';
 
 class Home extends Component {
@@ -11,7 +13,12 @@ class Home extends Component {
         value: '',
     };
 
-    handleChange = e => this.setState({ value: e.target.value });
+    handleChange = e => {
+        const { search } = this.props;
+
+        this.setState({ value: e.target.value });
+        search(e.target.value);
+    };
 
     render() {
         const { value } = this.state;
@@ -27,4 +34,18 @@ class Home extends Component {
     }
 }
 
-export { Home };
+const mapStateToProps = state => ({
+    artists: state.artists,
+});
+
+const mapDispatchToProps = dispatch => ({
+    search: query => dispatch(operations.search(query)),
+    debouncedSearch: query => dispatch(operations.debouncedSearch(query)),
+});
+
+const ConnectedHome = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home);
+
+export { Home, ConnectedHome };
