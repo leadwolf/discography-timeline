@@ -1,6 +1,8 @@
 import { types } from '.';
 
 const initialState = {
+    query: '',
+
     href: '',
     items: [],
     limit: 20,
@@ -17,6 +19,11 @@ const reducer = (state = initialState, action) => {
         case types.ARTISTS_SEARCH_FAIL:
             return initialState;
         case types.ARTISTS_SEARCH_SUCCESS:
+            return {
+                ...state,
+                ...action.payload,
+            };
+        case types.ARTISTS_SEARCH_SET_QUERY:
             return {
                 ...state,
                 ...action.payload,
