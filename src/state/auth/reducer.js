@@ -1,7 +1,16 @@
-const initialState = {};
+import { authorizeURL } from './spotify';
+
+const initialState = {
+    authorizeURL,
+};
 
 const reducer = (state = initialState, action) => {
-    return {};
+    switch (action.type) {
+        default:
+            return {
+                ...state,
+            };
+    }
 };
 
 export { reducer };

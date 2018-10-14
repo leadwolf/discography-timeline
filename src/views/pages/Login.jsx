@@ -3,7 +3,9 @@ import './login.scss';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 
 const styles = {
     button: {},
@@ -12,7 +14,7 @@ const styles = {
     },
 };
 
-function Login({ classes }) {
+function Login({ classes, auth: { authorizeURL } }) {
     return (
         <div className="page-login--container">
             <div className="page-login--content-container">
@@ -22,7 +24,12 @@ function Login({ classes }) {
                     This application uses your Spotify account to search artists and albums
                 </Typography>
 
-                <Button variant="contained" color="primary" className={classes.button}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    href={authorizeURL}
+                >
                     Login
                 </Button>
             </div>
@@ -30,4 +37,19 @@ function Login({ classes }) {
     );
 }
 
-export default withStyles(styles)(Login);
+Login.propTypes = {
+    auth: PropTypes.shape({
+        authorizeURL: PropTypes.string.isRequired,
+    }).isRequired,
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(Login));
