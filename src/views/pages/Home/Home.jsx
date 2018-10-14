@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { operations } from '../../../state/artists';
 import { Search } from '../../components/Search';
 
+const debounce = require('lodash.debounce');
+
 class Home extends Component {
     static propTypes = {};
 
@@ -13,11 +15,11 @@ class Home extends Component {
         value: '',
     };
 
-    handleChange = e => {
-        const { search } = this.props;
+    debouncedSearch = debounce(this.props.search, 400, { leading: true });
 
+    handleChange = e => {
         this.setState({ value: e.target.value });
-        search(e.target.value);
+        this.debouncedSearch(e.target.value);
     };
 
     render() {
@@ -40,7 +42,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     search: query => dispatch(operations.search(query)),
-    debouncedSearch: query => dispatch(operations.debouncedSearch(query)),
 });
 
 const ConnectedHome = connect(
