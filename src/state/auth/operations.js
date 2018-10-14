@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 import * as actions from './actions';
-import { spotifyApi } from './spotify';
+import { spotifyApi } from '../spotify';
 
 /* eslint camelcase: 0 */
 
@@ -18,7 +18,7 @@ const validateLogin = (
         return Promise.resolve({ error: ERROR_DEFAULT });
     }
 
-    spotifyApi.setAccessToken('myAccessToken');
+    spotifyApi.setAccessToken(access_token);
 
     const expiration_date = moment()
         .add(expires_in, 'seconds')
