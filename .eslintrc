@@ -23,6 +23,7 @@
         "import/prefer-default-export": 0,
         "no-unused-vars": 1,
         "react/destructuring-assignment": 1,
-        "no-return-assign": ["warn", "except-parens"]
+        "no-return-assign": ["warn", "except-parens"],
+        "camelcase": 0
     }
 }

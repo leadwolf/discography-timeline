@@ -2,7 +2,8 @@ import React from 'react';
 import { Redirect, Route, Router as ReactRouter, Switch } from 'react-router-dom';
 
 import { history } from '../../state/history';
-import { Login, LoginResult, Home } from '../pages';
+import { Home, Login, LoginResult } from '../pages';
+import { PrivateRoute } from './components';
 
 const Router = () => (
     <ReactRouter history={history}>
@@ -10,9 +11,9 @@ const Router = () => (
             <Route exact path="/login" component={Login} />
             <Route exact path="/login/callback" component={LoginResult} />
 
-            <Route exact path="/" component={Home} />
+            <PrivateRoute exact path="/" component={Home} />
 
-            <Redirect to="/login" component={Login} />
+            <Redirect to="/" />
         </Switch>
     </ReactRouter>
 );
