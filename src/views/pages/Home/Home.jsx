@@ -27,6 +27,7 @@ class Home extends Component {
         const { value } = this.state;
         const {
             artists: { items, total, offset },
+            loadMore,
         } = this.props;
 
         const hasMore = items.length + offset < total;
@@ -37,7 +38,7 @@ class Home extends Component {
                     <Search value={value} handleChange={this.handleChange} />
                 </div>
                 <div className="page-home-content-container">
-                    <ArtistList loadMore={undefined} hasMore={hasMore} artists={items} />
+                    <ArtistList loadMore={loadMore} hasMore={hasMore} artists={items} />
                 </div>
             </div>
         );
@@ -50,6 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     search: query => dispatch(operations.search(query)),
+    loadMore: () => dispatch(operations.loadMore()),
 });
 
 const ConnectedHome = connect(
