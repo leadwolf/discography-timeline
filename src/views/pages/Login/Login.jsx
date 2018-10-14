@@ -49,7 +49,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {};
 
-export default connect(
+const ConnectedLogin = connect(
     mapStateToProps,
     mapDispatchToProps
 )(withStyles(styles)(Login));
+
+export { ConnectedLogin as Login };
