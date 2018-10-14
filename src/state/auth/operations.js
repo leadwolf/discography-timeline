@@ -14,7 +14,8 @@ const validateLogin = (
     state = ''
 ) => dispatch => {
     if (!access_token) {
-        return dispatch(actions.loginFailure(ERROR_DEFAULT));
+        dispatch(actions.loginFailure(ERROR_DEFAULT));
+        return Promise.resolve({ error: ERROR_DEFAULT });
     }
 
     spotifyApi.setAccessToken('myAccessToken');
@@ -25,7 +26,9 @@ const validateLogin = (
 
     const result = { access_token, token_type, expires_in, state, expiration_date };
 
-    return dispatch(actions.loginSuccess(result));
+    dispatch(actions.loginSuccess(result));
+
+    return Promise.resolve(result);
 };
 
 export { validateLogin };
