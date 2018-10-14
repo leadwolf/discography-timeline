@@ -1,14 +1,27 @@
 import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
+import { createTransform, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { reducer as authReducer } from './auth/reducer';
 import { reducer as artistsReducer } from './artists/reducer';
+import { helpers } from './auth';
+import { initialState, reducer as authReducer } from './auth/reducer';
+
+const transformAuth = createTransform(
+    inboundState => inboundState,
+
+    outboundState => {
+        console.log(helpers.isAuth(outboundState));
+
+        return helpers.notAuth(outboundState) ? initialState : outboundState;
+    },
+    { whitelist: ['auth'] }
+);
 
 const persistConfig = {
     key: 'root',
     storage,
     whitelist: ['auth'],
+    transforms: [transformAuth],
 };
 
 const rootReducer = persistReducer(
