@@ -23,6 +23,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
             };
+        case types.ARTISTS_SEARCH_ADD:
+            return {
+                ...state,
+                ...action.payload,
+                items: [...state.items, ...action.payload.items],
+            };
         case types.ARTISTS_SEARCH_SET_QUERY:
             return {
                 ...state,
