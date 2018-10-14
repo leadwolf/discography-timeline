@@ -1,3 +1,5 @@
+import './artistList.scss';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -15,9 +17,11 @@ const ArtistList = ({ loadMore, hasMore, artists }) => (
             </div>
         }
     >
-        {artists.map(artist => (
-            <ArtistAvatar key={artist.id} artist={artist} />
-        ))}
+        <div className="artist-list-container">
+            {artists.map(artist => (
+                <ArtistAvatar key={artist.id} artist={artist} />
+            ))}
+        </div>
     </InfiniteScroll>
 );
 

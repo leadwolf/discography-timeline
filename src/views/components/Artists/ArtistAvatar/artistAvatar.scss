@@ -1,0 +1,26 @@
+.artist-avatar-container {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+}
+
+.artist-avatar-name-container {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.artist-avatar-name {
+    text-align: center;
+
+    margin-top: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 10vw;
+}
