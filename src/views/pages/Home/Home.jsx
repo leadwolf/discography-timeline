@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { operations } from '../../../state/artists';
+import { ArtistList } from '../../components/Artists';
 import { Search } from '../../components/Search';
 
 const debounce = require('lodash.debounce');
@@ -24,13 +25,18 @@ class Home extends Component {
 
     render() {
         const { value } = this.state;
+        const {
+            artists: { items },
+        } = this.props;
 
         return (
             <div className="page-home-container">
                 <div>
                     <Search value={value} handleChange={this.handleChange} />
                 </div>
-                <div className="page-home-content-container">todo</div>
+                <div className="page-home-content-container">
+                    <ArtistList loadMore={undefined} hasMore={false} artists={items} />
+                </div>
             </div>
         );
     }
