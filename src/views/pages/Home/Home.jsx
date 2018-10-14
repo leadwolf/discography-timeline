@@ -26,8 +26,10 @@ class Home extends Component {
     render() {
         const { value } = this.state;
         const {
-            artists: { items },
+            artists: { items, total, offset },
         } = this.props;
+
+        const hasMore = items.length + offset < total;
 
         return (
             <div className="page-home-container">
@@ -35,7 +37,7 @@ class Home extends Component {
                     <Search value={value} handleChange={this.handleChange} />
                 </div>
                 <div className="page-home-content-container">
-                    <ArtistList loadMore={undefined} hasMore={false} artists={items} />
+                    <ArtistList loadMore={undefined} hasMore={hasMore} artists={items} />
                 </div>
             </div>
         );
