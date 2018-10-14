@@ -5,15 +5,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = theme => ({
-    input: {
-        margin: theme.spacing.unit,
+    root: {
+        margin: 0,
         padding: '20px',
+        backgroundColor: '#282828',
     },
 });
 
 const BaseSearch = ({ classes, value, handleChange }) => (
-    <FormControl fullWidth className={classes.input}>
-        <InputBase value={value} onChange={handleChange} placeholder="Search for an artist" />
+    <FormControl fullWidth className={classes.root}>
+        <InputBase
+            value={value}
+            onChange={handleChange}
+            placeholder="Search for an artist..."
+            autoFocus
+        />
     </FormControl>
 );
 
