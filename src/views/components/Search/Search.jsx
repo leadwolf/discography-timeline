@@ -1,18 +1,19 @@
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
+import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = theme => ({
-    margin: {
+    input: {
         margin: theme.spacing.unit,
+        padding: '20px',
     },
 });
 
 const BaseSearch = ({ classes, value, handleChange }) => (
-    <FormControl fullWidth className={classes.margin}>
-        <Input value={value} onChange={handleChange} />
+    <FormControl fullWidth className={classes.input}>
+        <InputBase value={value} onChange={handleChange} placeholder="Search for an artist" />
     </FormControl>
 );
 
