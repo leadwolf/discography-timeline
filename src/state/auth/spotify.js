@@ -1,5 +1,7 @@
 import SpotifyWebApi from 'spotify-web-api-node';
 
+const queryString = require('query-string');
+
 const redirectUri = 'http://localhost:3000/login/callback';
 const clientId = 'd77b2c91e2354ad4b65d4b62d7214631';
 const state = 'discography-timeline-initial-state';
@@ -11,6 +13,16 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 // Create the authorization URL
-const authorizeURL = spotifyApi.createAuthorizeURL([], state);
 
-export { authorizeURL };
+const params = {
+    client_id: clientId,
+    response_type: 'token',
+    redirect_uri: redirectUri,
+    state,
+};
+
+const query = queryString.stringify(params);
+
+const authorizeURL = `https://accounts.spotify.com/authorize?${query}`;
+
+export { authorizeURL, spotifyApi };
