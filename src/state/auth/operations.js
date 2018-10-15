@@ -31,4 +31,9 @@ const validateLogin = (
     return Promise.resolve(result);
 };
 
-export { validateLogin };
+const logout = () => dispatch => {
+    spotifyApi.setAccessToken('');
+    return dispatch(actions.logout());
+};
+
+export { validateLogin, logout };
