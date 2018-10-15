@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 
 import { operations } from '../../../state/artists';
 import { ArtistList } from '../../components/Artists';
+import { CenterInfo } from '../../components/general/CenterInfo/CenterInfo';
 import { Search } from '../../components/Search';
+import Typography from '@material-ui/core/Typography';
 
 const debounce = require('lodash.debounce');
 
@@ -38,7 +40,17 @@ class Home extends Component {
                     <Search value={value} handleChange={this.handleChange} />
                 </div>
                 <div className="page-home-content-container">
-                    <ArtistList loadMore={loadMore} hasMore={hasMore} artists={items} />
+                    {items.length > 0 && (
+                        <ArtistList loadMore={loadMore} hasMore={hasMore} artists={items} />
+                    )}
+                    {items.length === 0 && (
+                        <CenterInfo>
+                            <Typography>
+                                {value && 'No results were found'}
+                                {!value && 'Enter a search term'}
+                            </Typography>
+                        </CenterInfo>
+                    )}
                 </div>
             </div>
         );
