@@ -1,8 +1,37 @@
 .artist-avatar-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
     padding: 20px;
+
+    height: 22vw;
+    width: 22vw;
+}
+
+.artist-avatar-img {
+    width: calc(16vw - 20px);
+    height: calc(16vw - 20px);
+    border-radius: 50%;
+}
+
+.artist-avatar-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #1e88e5;
+}
+
+.artist-avatar-text-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    width: 75%;
+    text-align: center;
 }
 
 .artist-avatar-name-container {
@@ -15,7 +44,6 @@
 .artist-avatar-name {
     text-align: center;
 
-    margin-top: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
