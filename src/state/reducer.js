@@ -12,8 +12,6 @@ const transformAuth = createTransform(
     inboundState => inboundState,
 
     outboundState => {
-        console.log(helpers.isAuth(outboundState));
-
         spotifyApi.setAccessToken(outboundState.access_token);
 
         return helpers.notAuth(outboundState) ? initialState : outboundState;
