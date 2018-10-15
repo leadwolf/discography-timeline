@@ -1,18 +1,84 @@
+$avatar-normal: 17vw;
+$avatar-medium: 30vw;
+$avatar-big: 43vw;
+
 .artist-avatar-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
-    padding: 20px;
+    padding: 10px;
 
-    height: 22vw;
-    width: 22vw;
+    height: $avatar-normal;
+    width: $avatar-normal;
+
+    /* 
+        ##Device = Desktops
+        ##Screen = 1281px to higher resolution desktops
+    */
+
+    @media (min-width: 1281px) {
+        //CSS
+    }
+
+    /* 
+        ##Device = Laptops, Desktops
+        ##Screen = B/w 1025px to 1280px
+    */
+
+    @media (min-width: 1025px) and (max-width: 1280px) {
+        //CSS
+    }
+
+    /* 
+        ##Device = Tablets, Ipads (portrait)
+        ##Screen = B/w 768px to 1024px
+    */
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        height: $avatar-medium;
+        width: $avatar-medium;
+    }
+
+    /* 
+        ##Device = Tablets, Ipads (landscape)
+        ##Screen = B/w 768px to 1024px
+    */
+
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        height: $avatar-medium;
+        width: $avatar-medium;
+    }
+
+    /* 
+        ##Device = Low Resolution Tablets, Mobiles (Landscape)
+        ##Screen = B/w 481px to 767px
+    */
+
+    @media (min-width: 481px) and (max-width: 767px) {
+        height: $avatar-medium;
+        width: $avatar-medium;
+
+        padding: 5px;
+    }
+
+    /* 
+        ##Device = Most of the Smartphones Mobiles (Portrait)
+        ##Screen = B/w 320px to 479px
+    */
+
+    @media (min-width: 320px) and (max-width: 480px) {
+        height: $avatar-big;
+        width: $avatar-big;
+
+        padding: 5px;
+    }
 }
 
 .artist-avatar-img {
-    width: calc(16vw - 20px);
-    height: calc(16vw - 20px);
+    width: 80%;
+    height: 80%;
     border-radius: 50%;
 }
 
@@ -48,7 +114,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    width: 100%;
     min-width: 0;
-    max-width: 10vw;
+    max-width: 75%;
 }
