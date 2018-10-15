@@ -1,13 +1,13 @@
 import './home.scss';
 
+import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { operations } from '../../../state/artists';
+import { actions, operations } from '../../../state/artists';
 import { ArtistList } from '../../components/Artists';
 import { CenterInfo } from '../../components/general/CenterInfo/CenterInfo';
 import { Search } from '../../components/Search';
-import Typography from '@material-ui/core/Typography';
 
 const debounce = require('lodash.debounce');
 
@@ -21,8 +21,17 @@ class Home extends Component {
     debouncedSearch = debounce(this.props.search, 400, { leading: true });
 
     handleChange = e => {
-        this.setState({ value: e.target.value });
-        this.debouncedSearch(e.target.value);
+        const {
+            target: { value },
+        } = e;
+        const { clearSearch } = this.props;
+
+        this.setState({ value });
+        if (value) {
+            this.debouncedSearch(value);
+        } else {
+            clearSearch();
+        }
     };
 
     render() {
@@ -64,6 +73,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     search: query => dispatch(operations.search(query)),
     loadMore: () => dispatch(operations.loadMore()),
+    clearSearch: () => dispatch(actions.clearSearch()),
 });
 
 const ConnectedHome = connect(
