@@ -34,6 +34,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
             };
+        case types.ARTISTS_SEARCH_CLEAR:
+            return {
+                ...initialState,
+            };
     }
 };
 

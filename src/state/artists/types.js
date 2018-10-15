@@ -5,10 +5,13 @@ const ARTISTS_SEARCH_SET_QUERY = 'app/artist/search/query';
 
 const ARTISTS_SEARCH_ADD = 'app/artist/search/add';
 
+const ARTISTS_SEARCH_CLEAR = 'app/artist/search/clear';
+
 export {
     ARTISTS_SEARCH,
     ARTISTS_SEARCH_SUCCESS,
     ARTISTS_SEARCH_FAIL,
     ARTISTS_SEARCH_SET_QUERY,
     ARTISTS_SEARCH_ADD,
+    ARTISTS_SEARCH_CLEAR,
 };

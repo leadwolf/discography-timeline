@@ -8,4 +8,6 @@ const searchAddSuccess = result => ({ type: types.ARTISTS_SEARCH_ADD, payload: {
 
 const setQuery = query => ({ type: types.ARTISTS_SEARCH_SET_QUERY, payload: { query } });
 
-export { searchFail, searchSuccess, setQuery, searchAddSuccess };
+const clearSearch = () => ({ type: types.ARTISTS_SEARCH_CLEAR });
+
+export { searchFail, searchSuccess, setQuery, searchAddSuccess, clearSearch };
