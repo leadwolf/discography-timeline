@@ -2,7 +2,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 
 const queryString = require('query-string');
 
-const devRedirectUri = 'http://localhost:3000/login/callback';
+const devRedirectUri = `${window.location.origin}/login/callback`;
 const prodRedirectUri = 'http://timeline.ccaroni.com/login/callback';
 
 const redirectUri = process.env.NODE_ENV === 'development' ? devRedirectUri : prodRedirectUri;
