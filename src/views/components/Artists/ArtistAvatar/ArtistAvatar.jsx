@@ -1,10 +1,11 @@
 import './artistAvatar.scss';
 
+import { withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import Tooltip from '@material-ui/core/Tooltip';
+import { withRouter, Link } from 'react-router-dom';
 
-import { withStyles } from '@material-ui/core/styles';
 import { artistItemPropType } from './types';
 
 const styles = theme => ({
@@ -15,10 +16,16 @@ const styles = theme => ({
     },
 });
 
-const ArtistAvatar = ({ classes, artist: { name, images } }) => {
+const ArtistAvatar = ({ classes, artist: { id, name, images }, history }) => {
+    const artistLink = `/artist/${id}`;
+
     const avatar = () => {
         if (images.length > 0)
-            return <img className="artist-avatar-img" alt={name} src={images[0].url} />;
+            return (
+                <Link to={artistLink} className="artist-avatar-img-container">
+                    <img className="artist-avatar-img" alt={name} src={images[0].url} />
+                </Link>
+            );
 
         return (
             <div className="artist-avatar-img artist-avatar-text-container">
@@ -31,12 +38,12 @@ const ArtistAvatar = ({ classes, artist: { name, images } }) => {
 
     return (
         <div className="artist-avatar-container">
-            {avatar()}
+            <div className="artist-avatar-img-container">{avatar()}</div>
             <div className="artist-avatar-name-container">
                 <Tooltip title={name}>
-                    <div className="artist-avatar-name">
+                    <Link to={artistLink} className="artist-avatar-name">
                         <Typography className={classes.name}>{name}</Typography>
-                    </div>
+                    </Link>
                 </Tooltip>
             </div>
         </div>
@@ -47,6 +54,6 @@ ArtistAvatar.propTypes = {
     artist: artistItemPropType.isRequired,
 };
 
-const StyledAvatar = withStyles(styles)(ArtistAvatar);
+const StyledAvatar = withRouter(withStyles(styles)(ArtistAvatar));
 
 export { StyledAvatar as ArtistAvatar };

@@ -2,6 +2,8 @@ $avatar-normal: 17vw;
 $avatar-medium: 30vw;
 $avatar-big: 43vw;
 
+// ROOT CONTAINER
+
 .artist-avatar-container {
     display: flex;
     flex-direction: column;
@@ -76,11 +78,25 @@ $avatar-big: 43vw;
     }
 }
 
+// IMG
+
+.artist-avatar-img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 90%;
+    height: 90%;
+}
+
 .artist-avatar-img {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
 }
+
+// AVATAR TEXT REPLACEMENT
 
 .artist-avatar-text-container {
     display: flex;
@@ -99,6 +115,8 @@ $avatar-big: 43vw;
     width: 75%;
     text-align: center;
 }
+
+// NAME
 
 .artist-avatar-name-container {
     display: flex;
