@@ -7,6 +7,9 @@ const theme = createMuiTheme({
         main: '#3f51b5',
         type: 'dark',
     },
+    typography: {
+        useNextVariants: true,
+    },
 });
 
 const ThemeProvider = ({ children }) => (
