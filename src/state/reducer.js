@@ -3,6 +3,7 @@ import { createTransform, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import { reducer as artistsReducer } from './artists/reducer';
+import { reducer as albumReducer } from './albums/reducer';
 import { helpers } from './auth';
 import { initialState, reducer as authReducer } from './auth/reducer';
 
@@ -31,6 +32,7 @@ const rootReducer = persistReducer(
     combineReducers({
         auth: authReducer,
         artists: artistsReducer,
+        albums: albumReducer,
     })
 );
 
