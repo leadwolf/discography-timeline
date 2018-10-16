@@ -3,7 +3,7 @@ import { Redirect, Router as ReactRouter, Switch } from 'react-router-dom';
 
 import { history } from '../../state/history';
 import Navbar from '../components/navigation/Navbar';
-import { ConnectedHome, Login, LoginResult } from '../pages';
+import { ConnectedHome, Login, LoginResult, Artist } from '../pages';
 import { PrivateRoute, PublicRoute } from './components';
 
 const Router = () => (
@@ -15,6 +15,8 @@ const Router = () => (
                 <PublicRoute exact path="/login/callback" component={LoginResult} />
 
                 <PrivateRoute exact path="/" component={ConnectedHome} />
+
+                <PrivateRoute exact path="/artist/:id" component={Artist} />
 
                 <Redirect to="/" />
             </Switch>
