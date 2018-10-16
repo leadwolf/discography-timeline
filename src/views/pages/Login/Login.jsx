@@ -3,9 +3,9 @@ import './login.scss';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
+
+import { authorizeURL } from '../../../state/spotify';
 
 const styles = {
     button: {},
@@ -14,7 +14,7 @@ const styles = {
     },
 };
 
-function Login({ classes, auth: { authorizeURL } }) {
+function Login({ classes }) {
     return (
         <div className="page-login--container">
             <div className="page-login--content-container">
@@ -37,21 +37,6 @@ function Login({ classes, auth: { authorizeURL } }) {
     );
 }
 
-Login.propTypes = {
-    auth: PropTypes.shape({
-        authorizeURL: PropTypes.string.isRequired,
-    }).isRequired,
-};
-
-const mapStateToProps = state => ({
-    auth: state.auth,
-});
-
-const mapDispatchToProps = {};
-
-const ConnectedLogin = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withStyles(styles)(Login));
+const ConnectedLogin = withStyles(styles)(Login);
 
 export { ConnectedLogin as Login };

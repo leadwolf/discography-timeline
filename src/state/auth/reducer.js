@@ -1,10 +1,10 @@
+import moment from 'moment';
+
 import { types } from '.';
-import { authorizeURL } from '../spotify';
 
 const initialState = {
-    authorizeURL,
-
     access_token: '',
+    expiration_date: moment(0).toISOString(),
 };
 
 const reducer = (state = initialState, action) => {
