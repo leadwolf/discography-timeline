@@ -50,6 +50,17 @@ const loadMore = () => (dispatch, getState) => {
         });
 };
 
+const getSingleArtist = id => dispatch => {
+    spotifyApi
+        .getArtist(id)
+        .then(res => {
+            return dispatch(actions.searchSingleSuccess(res.body));
+        })
+        .catch(err => {
+            return dispatch(actions.searchSingleFail(err.toString()));
+        });
+};
+
 const debouncedSearch = debounce(search);
 
-export { search, debouncedSearch, loadMore };
+export { search, debouncedSearch, loadMore, getSingleArtist };
