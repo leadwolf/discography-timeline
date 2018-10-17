@@ -2,15 +2,17 @@ import { spotifyApi } from '../spotify';
 import { actions } from '.';
 
 const search = artistId => dispatch => {
-    spotifyApi
+    return spotifyApi
         .getArtistAlbums(artistId, { limit: 50, market: 'US' })
         .then(res => {
             const { body } = res;
 
-            return dispatch(actions.searchSuccess(body));
+            dispatch(actions.searchSuccess(body));
+            return body;
         })
-        .catch(err => {
-            return dispatch(actions.searchFail(err.toString()));
+        .catch(error => {
+            dispatch(actions.searchFail(error.toString()));
+            return { isError: true, error };
         });
 };
 

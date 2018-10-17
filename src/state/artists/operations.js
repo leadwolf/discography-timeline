@@ -6,7 +6,8 @@ const debounce = require('lodash.debounce');
 
 const search = query => (dispatch, getState) => {
     if (!spotifyApi.getAccessToken()) {
-        return dispatch(authActions.logout());
+        dispatch(authActions.logout());
+        return { isError: 'true', error: new Error('Not logged in') };
     }
 
     const {
@@ -15,17 +16,19 @@ const search = query => (dispatch, getState) => {
 
     if (prevQuery !== query) dispatch(actions.setQuery(query));
 
-    spotifyApi
+    return spotifyApi
         .searchArtists(query)
         .then(res => {
             const {
                 body: { artists },
             } = res;
 
-            return dispatch(actions.searchSuccess(artists));
+            dispatch(actions.searchSuccess(artists));
+            return artists;
         })
-        .catch(err => {
-            return dispatch(actions.searchFail(err.toString()));
+        .catch(error => {
+            dispatch(actions.searchFail(error.toString()));
+            return { isError: true, error };
         });
 };
 
@@ -36,28 +39,32 @@ const loadMore = () => (dispatch, getState) => {
     const currentEnd = offset + items.length;
     const nextOffset = currentEnd + 1 < total ? currentEnd + 1 : currentEnd;
 
-    spotifyApi
+    return spotifyApi
         .searchArtists(query, { offset: nextOffset })
         .then(res => {
             const {
                 body: { artists },
             } = res;
 
-            return dispatch(actions.searchAddSuccess(artists));
+            dispatch(actions.searchAddSuccess(artists));
+            return artists;
         })
-        .catch(err => {
-            return dispatch(actions.searchFail(err.toString()));
+        .catch(error => {
+            dispatch(actions.searchFail(error.toString()));
+            return { isError: true, error };
         });
 };
 
 const getSingleArtist = id => dispatch => {
-    spotifyApi
+    return spotifyApi
         .getArtist(id)
         .then(res => {
-            return dispatch(actions.searchSingleSuccess(res.body));
+            dispatch(actions.searchSingleSuccess(res.body));
+            return res.body;
         })
-        .catch(err => {
-            return dispatch(actions.searchSingleFail(err.toString()));
+        .catch(error => {
+            dispatch(actions.searchSingleFail(error.toString()));
+            return { isError: true, error };
         });
 };
 

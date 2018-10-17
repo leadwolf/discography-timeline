@@ -19,8 +19,9 @@ class Artist extends React.Component {
             searchArtistAlbums,
         } = this.props;
 
-        searchArtist(id);
-        searchArtistAlbums(id);
+        searchArtist(id).then(res => {
+            if (!res.isError) searchArtistAlbums(id);
+        });
     }
 
     render() {
