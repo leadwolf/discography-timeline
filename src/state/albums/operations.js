@@ -3,7 +3,7 @@ import { actions } from '.';
 
 const search = artistId => dispatch => {
     spotifyApi
-        .getArtistAlbums(artistId)
+        .getArtistAlbums(artistId, { limit: 50, market: 'US' })
         .then(res => {
             const { body } = res;
 
