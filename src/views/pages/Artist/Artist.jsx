@@ -9,8 +9,13 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { operations as albumOperations } from '../../../state/albums';
 import { operations as artistOperations } from '../../../state/artists';
 import { AlbumList } from '../../components/Albums';
+import { AlbumFilters } from '../../components/Albums';
 
 class Artist extends React.Component {
+    state = {
+        album_type: 'album',
+    };
+
     componentDidMount() {
         const {
             match: {
@@ -26,6 +31,8 @@ class Artist extends React.Component {
             .then(() => sortAlbums(true));
     }
 
+    handleFilterChange = e => this.setState({ [e.target.name]: e.target.value });
+
     render() {
         const {
             artists: {
@@ -33,6 +40,7 @@ class Artist extends React.Component {
             },
             albums: { items },
         } = this.props;
+        const { album_type } = this.state;
 
         return (
             <div className="page-artist-container">
@@ -45,6 +53,10 @@ class Artist extends React.Component {
                         <Typography variant="h2">Albums</Typography>
                     </div>
                     <div className="page-artist-albums-content-container">
+                        <AlbumFilters
+                            typeFilter={album_type}
+                            handleChange={this.handleFilterChange}
+                        />
                         <AlbumList albums={items} />
                     </div>
                 </div>
