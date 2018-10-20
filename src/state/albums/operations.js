@@ -83,4 +83,15 @@ const reverse = () => (dispatch, getState) => {
     return Promise.resolve(reversedItems);
 };
 
-export { search, searchAll, sortAlbums, reverse };
+const filterUniqueAlbums = () => (dispatch, getState) => {
+    const {
+        albums: { items },
+    } = getState();
+
+    const uniqueItems = helpers.transformAlbums(items);
+
+    dispatch(actions.uniqueAlbums(uniqueItems));
+    return Promise.resolve(uniqueItems);
+};
+
+export { search, searchAll, sortAlbums, reverse, filterUniqueAlbums };

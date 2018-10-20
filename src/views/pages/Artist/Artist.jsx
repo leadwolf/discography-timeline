@@ -25,11 +25,13 @@ class Artist extends React.Component {
             searchArtist,
             searchAll,
             sortAlbums,
+            filterUniqueAlbums,
         } = this.props;
 
         searchArtist(id)
             .then(() => searchAll(true, album_types))
-            .then(() => sortAlbums(true));
+            .then(() => sortAlbums(true))
+            .then(filterUniqueAlbums);
     }
 
     handleFilterChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -77,6 +79,7 @@ const mapDispatchToProps = dispatch => ({
     searchArtistAlbums: id => dispatch(albumOperations.search(id)),
     searchAll: (init, albumTypes) => dispatch(albumOperations.searchAll(init, albumTypes)),
     sortAlbums: () => dispatch(albumOperations.sortAlbums()),
+    filterUniqueAlbums: () => dispatch(albumOperations.filterUniqueAlbums()),
 });
 
 const ConnectedArtist = withRouter(

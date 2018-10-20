@@ -27,4 +27,28 @@ const dateSorter = (album1, album2) => {
 
 const reverseDateSorter = (date1, date2) => dateSorter(date1, date2) * -1;
 
-export { getMomentFromReleaseDate, dateSorter, reverseDateSorter };
+/**
+ * Transforms the array of albums to be unique according to name, with duplicate albums being in the
+ * `alternatives` array of the first album found
+ *
+ * @param {*} albums
+ */
+const transformAlbums = albums => {
+    const uniqueAlbums = {};
+    albums.forEach(album => {
+        const existingAlbum = uniqueAlbums[album.name];
+        if (!existingAlbum) {
+            uniqueAlbums[album.name] = album;
+        } else {
+            uniqueAlbums[album.name] = {
+                ...existingAlbum,
+                alternatives: existingAlbum.alternatives
+                    ? [...existingAlbum.alternatives, album]
+                    : [album],
+            };
+        }
+    });
+    return Object.values(uniqueAlbums);
+};
+
+export { getMomentFromReleaseDate, dateSorter, reverseDateSorter, transformAlbums };

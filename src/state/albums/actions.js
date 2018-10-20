@@ -22,4 +22,17 @@ const reversedAlbums = items => ({
     payload: { items },
 });
 
-export { searchFail, searchSuccess, searchAllFail, searchAllSuccess, sortedAlbums, reversedAlbums };
+const uniqueAlbums = items => ({
+    type: types.ARTIST_ALBUM_UNIQUE_FILTER,
+    payload: { items },
+});
+
+export {
+    searchFail,
+    searchSuccess,
+    searchAllFail,
+    searchAllSuccess,
+    sortedAlbums,
+    reversedAlbums,
+    uniqueAlbums,
+};

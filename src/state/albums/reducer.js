@@ -35,6 +35,8 @@ const reducer = (state = initialState, action) => {
         case types.ARTIST_ALBUM_REVERSE: {
             return { ...state, ...action.payload };
         }
+        case types.ARTIST_ALBUM_UNIQUE_FILTER:
+            return { ...state, ...action.payload };
     }
 };
 
