@@ -1,6 +1,5 @@
 import { spotifyApi } from '../spotify';
 import { actions } from '.';
-import { off } from 'rsvp';
 
 const albumSearchParams = { limit: 50, market: 'US' };
 
@@ -19,21 +18,28 @@ const search = artistId => dispatch => {
         });
 };
 
-const loadMore = () => (dispatch, getState) => {
+const loadMore = (init = false) => (dispatch, getState) => {
     const {
-        albums: { total, offset, items, artistId },
+        albums: { total, items },
+        artists: {
+            selectedArtist: { id: artistId },
+        },
     } = getState();
 
-    const currentAmount = items.length;
-
-    if (offset + currentAmount >= total) {
-        return Promise.resolve({ isError: true, error: 'No more results' });
+    if (!artistId) {
+        const err = { isError: true, error: 'No artist id specified' };
+        dispatch(actions.searchMoreFail(err.error.toString()));
+        return Promise.resolve(err);
     }
 
-    const nextOffset = offset + currentAmount;
+    if (items.length >= total && !init) {
+        const err = { isError: true, error: 'No more results' };
+        dispatch(actions.searchMoreFail(err.error.toString()));
+        return Promise.resolve(err);
+    }
 
     return spotifyApi
-        .getArtistAlbums(artistId, { ...albumSearchParams, offset: nextOffset })
+        .getArtistAlbums(artistId, { ...albumSearchParams, offset: items.length })
         .then(res => {
             const { body } = res;
 
@@ -43,7 +49,7 @@ const loadMore = () => (dispatch, getState) => {
         .then(() => dispatch(loadMore()))
         .catch(error => {
             dispatch(actions.searchMoreFail(error.toString()));
-            return { isError: true, error };
+            return Promise.resolve({ isError: true, error });
         });
 };
 
