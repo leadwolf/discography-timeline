@@ -57,12 +57,12 @@ const searchAll = (init = false) => (dispatch, getState) => {
         });
 };
 
-const sortAlbums = () => (dispatch, getState) => {
+const sortAlbums = (reverse = true) => (dispatch, getState) => {
     const {
         albums: { items },
     } = getState();
 
-    const sortedItems = items.sort(helpers.reverseDateSorter);
+    const sortedItems = items.sort(reverse ? helpers.dateSorter : helpers.reverseDateSorter);
 
     dispatch(actions.sortedAlbums(sortedItems));
     return Promise.resolve(sortedItems);

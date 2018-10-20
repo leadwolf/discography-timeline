@@ -23,7 +23,7 @@ class Artist extends React.Component {
 
         searchArtist(id)
             .then(() => searchAll(true))
-            .then(sortAlbums);
+            .then(() => sortAlbums(true));
     }
 
     render() {
