@@ -39,13 +39,10 @@ const transformAlbums = albums => {
         const existingAlbum = uniqueAlbums[album.name];
         if (!existingAlbum) {
             uniqueAlbums[album.name] = album;
+        } else if (existingAlbum.alternatives) {
+            existingAlbum.alternatives.push(album);
         } else {
-            uniqueAlbums[album.name] = {
-                ...existingAlbum,
-                alternatives: existingAlbum.alternatives
-                    ? [...existingAlbum.alternatives, album]
-                    : [album],
-            };
+            existingAlbum.alternatives = [album];
         }
     });
     return Object.values(uniqueAlbums);
