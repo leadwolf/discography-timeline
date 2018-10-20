@@ -20,9 +20,9 @@ const reducer = (state = initialState, action) => {
             return { ...initialState };
         case types.ARTIST_ALBUM_SEARCH_SUCCESS:
             return { ...state, ...action.payload };
-        case types.ARTIST_ALBUM_SEARCH_MORE_FAIL:
+        case types.ARTIST_ALBUM_SEARCH_ALL_FAIL:
             return { ...state };
-        case types.ARTIST_ALBUM_SEARCH_MORE_SUCCESS:
+        case types.ARTIST_ALBUM_SEARCH_ALL_SUCCESS:
             return {
                 ...state,
                 ...action.payload,

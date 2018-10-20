@@ -16,10 +16,10 @@ class Artist extends React.Component {
                 params: { id },
             },
             searchArtist,
-            loadMore,
+            searchAll,
         } = this.props;
 
-        searchArtist(id).then(() => loadMore(true));
+        searchArtist(id).then(() => searchAll(true));
     }
 
     render() {
@@ -62,7 +62,7 @@ const mapStateToProps = state => ({ artists: state.artists, albums: state.albums
 const mapDispatchToProps = dispatch => ({
     searchArtist: id => dispatch(operations.getSingleArtist(id)),
     searchArtistAlbums: id => dispatch(albumOperations.search(id)),
-    loadMore: init => dispatch(albumOperations.loadMore(init)),
+    searchAll: init => dispatch(albumOperations.searchAll(init)),
 });
 
 const ConnectedArtist = withRouter(

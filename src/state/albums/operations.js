@@ -18,7 +18,11 @@ const search = artistId => dispatch => {
         });
 };
 
-const loadMore = (init = false) => (dispatch, getState) => {
+/**
+ *
+ * @param {Boolean} init - If should run the query, even there are no previous items and total
+ */
+const searchAll = (init = false) => (dispatch, getState) => {
     const {
         albums: { total, items },
         artists: {
@@ -28,13 +32,13 @@ const loadMore = (init = false) => (dispatch, getState) => {
 
     if (!artistId) {
         const err = { isError: true, error: 'No artist id specified' };
-        dispatch(actions.searchMoreFail(err.error.toString()));
+        dispatch(actions.searchAllFail(err.error.toString()));
         return Promise.resolve(err);
     }
 
     if (items.length >= total && !init) {
         const err = { isError: true, error: 'No more results' };
-        dispatch(actions.searchMoreFail(err.error.toString()));
+        dispatch(actions.searchAllFail(err.error.toString()));
         return Promise.resolve(err);
     }
 
@@ -43,14 +47,14 @@ const loadMore = (init = false) => (dispatch, getState) => {
         .then(res => {
             const { body } = res;
 
-            dispatch(actions.searchMoreSuccess(body));
+            dispatch(actions.searchAllSuccess(body));
             return body;
         })
-        .then(() => dispatch(loadMore()))
+        .then(() => dispatch(searchAll()))
         .catch(error => {
-            dispatch(actions.searchMoreFail(error.toString()));
+            dispatch(actions.searchAllFail(error.toString()));
             return Promise.resolve({ isError: true, error });
         });
 };
 
-export { search, loadMore };
+export { search, searchAll };

@@ -6,10 +6,10 @@ const searchSuccess = result => ({
     payload: { ...result },
 });
 
-const searchMoreFail = error => ({ type: types.ARTIST_ALBUM_SEARCH_MORE_FAIL, payload: { error } });
-const searchMoreSuccess = result => ({
-    type: types.ARTIST_ALBUM_SEARCH_MORE_SUCCESS,
+const searchAllFail = error => ({ type: types.ARTIST_ALBUM_SEARCH_ALl_FAIL, payload: { error } });
+const searchAllSuccess = result => ({
+    type: types.ARTIST_ALBUM_SEARCH_ALL_SUCCESS,
     payload: { ...result },
 });
 
-export { searchFail, searchSuccess, searchMoreFail, searchMoreSuccess };
+export { searchFail, searchSuccess, searchAllFail, searchAllSuccess };
