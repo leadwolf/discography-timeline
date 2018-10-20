@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+const stringSimilarity = require('string-similarity');
+
 const PRECISION_FORMATS = {
     year: 'YYYY',
     month: 'YYYY-MM',
@@ -27,6 +29,10 @@ const dateSorter = (album1, album2) => {
 
 const reverseDateSorter = (date1, date2) => dateSorter(date1, date2) * -1;
 
+const isAlbumDuplicate = (album1, album2) =>
+    (album2.name.startsWith(album1.name) || album1.name.startsWith(album2.name)) &&
+    album1.release_date === album2.release_date;
+
 /**
  * Transforms the array of albums to be unique according to name, with duplicate albums being in the
  * `alternatives` array of the first album found
@@ -38,11 +44,8 @@ const transformAlbums = albums => {
 
     albums.forEach(album => {
         const nameNotFound = !uniqueAlbums[album.name];
-        const previousAlbumWithSimiliarName = Object.values(uniqueAlbums).find(
-            previousAlbum =>
-                (album.name.startsWith(previousAlbum.name) ||
-                    previousAlbum.name.startsWith(album.name)) &&
-                previousAlbum.release_date === album.release_date
+        const previousAlbumWithSimiliarName = Object.values(uniqueAlbums).find(previousAlbum =>
+            isAlbumDuplicate(previousAlbum, album)
         );
 
         if (nameNotFound && !previousAlbumWithSimiliarName) {
