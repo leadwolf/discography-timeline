@@ -12,12 +12,12 @@ const AlbumFilters = ({ typeFilter, handleChange }) => {
 };
 
 AlbumFilters.propTypes = {
-    typeFilter: PropTypes.string,
+    typeFilter: PropTypes.arrayOf(PropTypes.string),
     handleChange: PropTypes.func,
 };
 
 AlbumFilters.defaultProps = {
-    typeFilter: '',
+    typeFilter: [''],
     handleChange: () => undefined,
 };
 

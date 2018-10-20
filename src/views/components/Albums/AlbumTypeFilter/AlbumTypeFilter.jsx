@@ -16,11 +16,12 @@ const styles = theme => ({
 const AlbumTypeFilter = ({ classes, filter, handleChange }) => {
     return (
         <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="album_type">Album Type</InputLabel>
+            <InputLabel htmlFor="album_types">Album Type</InputLabel>
             <Select
+                multiple
                 value={filter}
                 onChange={handleChange}
-                inputProps={{ name: 'album_type', id: 'album_type' }}
+                inputProps={{ name: 'album_types', id: 'album_types' }}
             >
                 <MenuItem value="album">Album</MenuItem>
                 <MenuItem value="single">Single</MenuItem>
@@ -33,12 +34,12 @@ const AlbumTypeFilter = ({ classes, filter, handleChange }) => {
 
 AlbumTypeFilter.propTypes = {
     classes: PropTypes.object.isRequired,
-    filter: PropTypes.string,
+    filter: PropTypes.arrayOf(PropTypes.string),
     handleChange: PropTypes.func,
 };
 
 AlbumTypeFilter.defaultProps = {
-    filter: '',
+    filter: [''],
     handleChange: () => undefined,
 };
 

@@ -22,7 +22,7 @@ const search = artistId => dispatch => {
  *
  * @param {Boolean} init - If should run the query, even there are no previous items and total
  */
-const searchAll = (init = false) => (dispatch, getState) => {
+const searchAll = (init = false, albumTypes) => (dispatch, getState) => {
     const {
         albums: { total, items },
         artists: {
@@ -43,7 +43,11 @@ const searchAll = (init = false) => (dispatch, getState) => {
     }
 
     return spotifyApi
-        .getArtistAlbums(artistId, { ...albumSearchParams, offset: items.length })
+        .getArtistAlbums(artistId, {
+            ...albumSearchParams,
+            offset: items.length,
+            album_type: albumTypes.join(','),
+        })
         .then(res => {
             const { body } = res;
 

@@ -13,10 +13,11 @@ import { AlbumFilters } from '../../components/Albums';
 
 class Artist extends React.Component {
     state = {
-        album_type: 'album',
+        album_types: ['album'],
     };
 
     componentDidMount() {
+        const { album_types } = this.state;
         const {
             match: {
                 params: { id },
@@ -27,7 +28,7 @@ class Artist extends React.Component {
         } = this.props;
 
         searchArtist(id)
-            .then(() => searchAll(true))
+            .then(() => searchAll(true, album_types))
             .then(() => sortAlbums(true));
     }
 
@@ -40,7 +41,7 @@ class Artist extends React.Component {
             },
             albums: { items },
         } = this.props;
-        const { album_type } = this.state;
+        const { album_types } = this.state;
 
         return (
             <div className="page-artist-container">
@@ -54,7 +55,7 @@ class Artist extends React.Component {
                     </div>
                     <div className="page-artist-albums-content-container">
                         <AlbumFilters
-                            typeFilter={album_type}
+                            typeFilter={album_types}
                             handleChange={this.handleFilterChange}
                         />
                         <AlbumList albums={items} />
@@ -74,7 +75,7 @@ const mapStateToProps = state => ({ artists: state.artists, albums: state.albums
 const mapDispatchToProps = dispatch => ({
     searchArtist: id => dispatch(artistOperations.getSingleArtist(id)),
     searchArtistAlbums: id => dispatch(albumOperations.search(id)),
-    searchAll: init => dispatch(albumOperations.searchAll(init)),
+    searchAll: (init, albumTypes) => dispatch(albumOperations.searchAll(init, albumTypes)),
     sortAlbums: () => dispatch(albumOperations.sortAlbums()),
 });
 
