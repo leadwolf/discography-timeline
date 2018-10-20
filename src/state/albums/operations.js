@@ -62,7 +62,7 @@ const sortAlbums = () => (dispatch, getState) => {
         albums: { items },
     } = getState();
 
-    const sortedItems = items.sort(helpers.dateSorter);
+    const sortedItems = items.sort(helpers.reverseDateSorter);
 
     dispatch(actions.sortedAlbums(sortedItems));
     return Promise.resolve(sortedItems);

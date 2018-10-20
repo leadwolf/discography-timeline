@@ -22,4 +22,6 @@ const dateSorter = (date1, date2) => {
     return 0;
 };
 
-export { getMomentFromReleaseDate, dateSorter };
+const reverseDateSorter = (date1, date2) => dateSorter(date1, date2) * -1;
+
+export { getMomentFromReleaseDate, dateSorter, reverseDateSorter };
