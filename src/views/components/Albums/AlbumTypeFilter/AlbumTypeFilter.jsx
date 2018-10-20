@@ -38,7 +38,7 @@ const MenuProps = {
 
 const names = ALBUM_GROUP_TYPES;
 
-const AlbumTypeFilter = ({ classes, theme, filter, handleChange }) => (
+const AlbumTypeFilter = ({ classes, theme, filter, handleChange, handleRemove }) => (
     <FormControl className={classes.formControl}>
         <InputLabel htmlFor="album_types">Chip</InputLabel>
         <Select
@@ -49,7 +49,12 @@ const AlbumTypeFilter = ({ classes, theme, filter, handleChange }) => (
             renderValue={selected => (
                 <div className={classes.chips}>
                     {selected.map(value => (
-                        <Chip key={value} label={value} className={classes.chip} />
+                        <Chip
+                            key={value}
+                            label={value}
+                            className={classes.chip}
+                            onDelete={filter.length > 1 ? () => handleRemove(value) : undefined}
+                        />
                     ))}
                 </div>
             )}
@@ -77,11 +82,13 @@ AlbumTypeFilter.propTypes = {
     classes: PropTypes.object.isRequired,
     filter: PropTypes.arrayOf(PropTypes.string),
     handleChange: PropTypes.func,
+    handleRemove: PropTypes.func,
 };
 
 AlbumTypeFilter.defaultProps = {
     filter: [''],
     handleChange: () => undefined,
+    handleRemove: () => undefined,
 };
 
 const StyledAlbumTypeFilter = withStyles(styles, { withTheme: true })(AlbumTypeFilter);

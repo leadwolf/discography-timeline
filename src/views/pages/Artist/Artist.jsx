@@ -36,6 +36,14 @@ class Artist extends React.Component {
 
     handleFilterChange = e => this.setState({ [e.target.name]: e.target.value });
 
+    handleRemovAlbumType = type =>
+        this.setState(({ album_types }) => ({
+            album_types:
+                album_types.length > 1
+                    ? album_types.filter(prevType => prevType !== type)
+                    : album_types,
+        }));
+
     render() {
         const {
             artists: {
@@ -59,6 +67,7 @@ class Artist extends React.Component {
                         <AlbumFilters
                             typeFilter={album_types}
                             handleChange={this.handleFilterChange}
+                            handleRemovAlbumType={this.handleRemovAlbumType}
                         />
                         <AlbumList albums={items} />
                     </div>
