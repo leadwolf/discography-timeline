@@ -2,6 +2,8 @@ import moment from 'moment';
 
 const stringSimilarity = require('string-similarity');
 
+const SIMILIAR_NAME_THRESHOLD = 0.6;
+
 const PRECISION_FORMATS = {
     year: 'YYYY',
     month: 'YYYY-MM',
@@ -30,7 +32,7 @@ const dateSorter = (album1, album2) => {
 const reverseDateSorter = (date1, date2) => dateSorter(date1, date2) * -1;
 
 const isAlbumDuplicate = (album1, album2) =>
-    (album2.name.startsWith(album1.name) || album1.name.startsWith(album2.name)) &&
+    stringSimilarity.compareTwoStrings(album1.name, album2.name) >= SIMILIAR_NAME_THRESHOLD &&
     album1.release_date === album2.release_date;
 
 /**
