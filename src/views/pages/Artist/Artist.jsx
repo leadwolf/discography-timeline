@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { operations as artistOperations } from '../../../state/artists';
 import { operations as albumOperations } from '../../../state/albums';
+import { operations as artistOperations } from '../../../state/artists';
+import { AlbumList } from '../../components/Albums';
 
 class Artist extends React.Component {
     componentDidMount() {
@@ -44,11 +45,7 @@ class Artist extends React.Component {
                         <Typography variant="h2">Albums</Typography>
                     </div>
                     <div className="page-artist-albums-content-container">
-                        {items.map(item => (
-                            <Typography key={item.id} variant="h5">
-                                {item.name}
-                            </Typography>
-                        ))}
+                        <AlbumList albums={items} />
                     </div>
                 </div>
             </div>
