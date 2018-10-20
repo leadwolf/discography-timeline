@@ -12,4 +12,9 @@ const searchAllSuccess = result => ({
     payload: { ...result },
 });
 
-export { searchFail, searchSuccess, searchAllFail, searchAllSuccess };
+const sortedAlbums = items => ({
+    type: types.ARTIST_ALBUM_SORT,
+    payload: { items },
+});
+
+export { searchFail, searchSuccess, searchAllFail, searchAllSuccess, sortedAlbums };

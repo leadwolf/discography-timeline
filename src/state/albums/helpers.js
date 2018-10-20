@@ -13,4 +13,13 @@ const getMomentFromReleaseDate = (date, precision) => {
     return moment(date, PRECISION_MAP.get(precision));
 };
 
-export { getMomentFromReleaseDate };
+const dateSorter = (date1, date2) => {
+    const moment1 = getMomentFromReleaseDate(date1);
+    const moment2 = getMomentFromReleaseDate(date2);
+
+    if (moment1.isBefore(moment2)) return -1;
+    if (moment1.isAfter(moment2)) return 1;
+    return 0;
+};
+
+export { getMomentFromReleaseDate, dateSorter };

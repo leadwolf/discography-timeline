@@ -1,5 +1,5 @@
 import { spotifyApi } from '../spotify';
-import { actions } from '.';
+import { actions, helpers } from '.';
 
 const albumSearchParams = { limit: 50, market: 'US' };
 
@@ -57,4 +57,15 @@ const searchAll = (init = false) => (dispatch, getState) => {
         });
 };
 
-export { search, searchAll };
+const sortAlbums = () => (dispatch, getState) => {
+    const {
+        albums: { items },
+    } = getState();
+
+    const sortedItems = items.sort(helpers.dateSorter);
+
+    dispatch(actions.sortedAlbums(sortedItems));
+    return Promise.resolve(sortedItems);
+};
+
+export { search, searchAll, sortAlbums };

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { operations } from '../../../state/artists';
+import { operations as artistOperations } from '../../../state/artists';
 import { operations as albumOperations } from '../../../state/albums';
 
 class Artist extends React.Component {
@@ -17,9 +17,12 @@ class Artist extends React.Component {
             },
             searchArtist,
             searchAll,
+            sortAlbums,
         } = this.props;
 
-        searchArtist(id).then(() => searchAll(true));
+        searchArtist(id)
+            .then(() => searchAll(true))
+            .then(sortAlbums);
     }
 
     render() {
@@ -60,9 +63,10 @@ Artist.propTypes = {
 const mapStateToProps = state => ({ artists: state.artists, albums: state.albums });
 
 const mapDispatchToProps = dispatch => ({
-    searchArtist: id => dispatch(operations.getSingleArtist(id)),
+    searchArtist: id => dispatch(artistOperations.getSingleArtist(id)),
     searchArtistAlbums: id => dispatch(albumOperations.search(id)),
     searchAll: init => dispatch(albumOperations.searchAll(init)),
+    sortAlbums: () => dispatch(albumOperations.sortAlbums()),
 });
 
 const ConnectedArtist = withRouter(
