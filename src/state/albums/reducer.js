@@ -1,9 +1,11 @@
 import { types } from '.';
 
 const initialState = {
+    artistId: '',
+
     href: '',
     items: [],
-    limit: 20,
+    limit: 50,
     next: '',
     offset: 0,
     previous: null,
@@ -18,6 +20,15 @@ const reducer = (state = initialState, action) => {
             return { ...initialState };
         case types.ARTIST_ALBUM_SEARCH_SUCCESS:
             return { ...state, ...action.payload };
+        case types.ARTIST_ALBUM_SEARCH_MORE_FAIL:
+            return { ...state };
+        case types.ARTIST_ALBUM_SEARCH_MORE_SUCCESS:
+            return {
+                ...state,
+                ...action.payload,
+                items: [...state.items, ...action.payload.items],
+                offset: action.payload.offset,
+            };
     }
 };
 
