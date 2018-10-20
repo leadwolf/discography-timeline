@@ -68,4 +68,15 @@ const sortAlbums = () => (dispatch, getState) => {
     return Promise.resolve(sortedItems);
 };
 
-export { search, searchAll, sortAlbums };
+const reverse = () => (dispatch, getState) => {
+    const {
+        albums: { items },
+    } = getState();
+
+    const reversedItems = items.reverse();
+
+    dispatch(actions.reversedAlbums(reversedItems));
+    return Promise.resolve(reversedItems);
+};
+
+export { search, searchAll, sortAlbums, reverse };

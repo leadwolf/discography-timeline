@@ -30,10 +30,10 @@ const reducer = (state = initialState, action) => {
                 offset: action.payload.offset,
             };
         case types.ARTIST_ALBUM_SORT: {
-            return {
-                ...state,
-                ...action.payload,
-            };
+            return { ...state, ...action.payload };
+        }
+        case types.ARTIST_ALBUM_REVERSE: {
+            return { ...state, ...action.payload };
         }
     }
 };

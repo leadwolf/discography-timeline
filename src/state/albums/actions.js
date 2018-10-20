@@ -17,4 +17,9 @@ const sortedAlbums = items => ({
     payload: { items },
 });
 
-export { searchFail, searchSuccess, searchAllFail, searchAllSuccess, sortedAlbums };
+const reversedAlbums = items => ({
+    type: types.ARTIST_ALBUM_REVERSE,
+    payload: { items },
+});
+
+export { searchFail, searchSuccess, searchAllFail, searchAllSuccess, sortedAlbums, reversedAlbums };
