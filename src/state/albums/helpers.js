@@ -34,15 +34,29 @@ const reverseDateSorter = (date1, date2) => dateSorter(date1, date2) * -1;
  * @param {*} albums
  */
 const transformAlbums = albums => {
-    const uniqueAlbums = {};
+    const uniqueAlbums = {}; // name <> album
+
     albums.forEach(album => {
-        const existingAlbum = uniqueAlbums[album.name];
-        if (!existingAlbum) {
+        const nameNotFound = !uniqueAlbums[album.name];
+        const previousAlbumWithSimiliarName = Object.values(uniqueAlbums).find(
+            previousAlbum =>
+                (album.name.startsWith(previousAlbum.name) ||
+                    previousAlbum.name.startsWith(album.name)) &&
+                previousAlbum.release_date === album.release_date
+        );
+
+        if (nameNotFound && !previousAlbumWithSimiliarName) {
             uniqueAlbums[album.name] = album;
-        } else if (existingAlbum.alternatives) {
-            existingAlbum.alternatives.push(album);
         } else {
-            existingAlbum.alternatives = [album];
+            const existingAlbum = previousAlbumWithSimiliarName
+                ? uniqueAlbums[previousAlbumWithSimiliarName.name]
+                : uniqueAlbums[album.name];
+
+            if (existingAlbum.alternatives) {
+                existingAlbum.alternatives.push(album);
+            } else {
+                existingAlbum.alternatives = [album];
+            }
         }
     });
     return Object.values(uniqueAlbums);
