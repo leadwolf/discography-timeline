@@ -16,10 +16,14 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         default:
             return state;
+
+        // SINGLE SEARCH
         case types.ARTIST_ALBUM_SEARCH_FAIL:
             return { ...initialState };
         case types.ARTIST_ALBUM_SEARCH_SUCCESS:
             return { ...state, ...action.payload };
+
+        // RECURSIVE SEARCH
         case types.ARTIST_ALBUM_SEARCH_ALL_FAIL:
             return { ...state };
         case types.ARTIST_ALBUM_SEARCH_ALL_SUCCESS:

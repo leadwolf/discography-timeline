@@ -23,26 +23,39 @@ class Artist extends React.Component {
                 params: { id },
             },
             searchArtist,
-            searchAll,
+            searchAlbumsRecursive,
             sortAlbums,
             filterUniqueAlbums,
         } = this.props;
 
         searchArtist(id)
-            .then(() => searchAll(true, album_types))
+            .then(() => searchAlbumsRecursive(true, album_types))
             .then(() => sortAlbums(true))
             .then(filterUniqueAlbums);
     }
 
-    handleFilterChange = e => this.setState({ [e.target.name]: e.target.value });
+    updateFilters = () => {
+        const { album_types } = this.state;
+        const { searchAlbumsRecursive, sortAlbums, filterUniqueAlbums } = this.props;
+
+        searchAlbumsRecursive(true, album_types)
+            .then(() => sortAlbums(true))
+            .then(filterUniqueAlbums);
+    };
+
+    handleFilterChange = e =>
+        this.setState({ [e.target.name]: e.target.value }, this.updateFilters);
 
     handleRemovAlbumType = type =>
-        this.setState(({ album_types }) => ({
-            album_types:
-                album_types.length > 1
-                    ? album_types.filter(prevType => prevType !== type)
-                    : album_types,
-        }));
+        this.setState(
+            ({ album_types }) => ({
+                album_types:
+                    album_types.length > 1
+                        ? album_types.filter(prevType => prevType !== type)
+                        : album_types,
+            }),
+            this.updateFilters
+        );
 
     render() {
         const {
@@ -86,7 +99,8 @@ const mapStateToProps = state => ({ artists: state.artists, albums: state.albums
 const mapDispatchToProps = dispatch => ({
     searchArtist: id => dispatch(artistOperations.getSingleArtist(id)),
     searchArtistAlbums: id => dispatch(albumOperations.search(id)),
-    searchAll: (init, albumTypes) => dispatch(albumOperations.searchAll(init, albumTypes)),
+    searchAlbumsRecursive: (init, albumTypes) =>
+        dispatch(albumOperations.searchAll(init, albumTypes)),
     sortAlbums: () => dispatch(albumOperations.sortAlbums()),
     filterUniqueAlbums: () => dispatch(albumOperations.filterUniqueAlbums()),
 });
