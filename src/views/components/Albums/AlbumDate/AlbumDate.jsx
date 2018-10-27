@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 
 const AlbumDate = ({ album: { release_date } }) => {
-    return <div className="album-timeline-date">{moment(release_date).format('LL')}</div>;
+    return <div className="album-timeline-date-info">{moment(release_date).format('LL')}</div>;
 };
 
 AlbumDate.propTypes = {

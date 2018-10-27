@@ -1,4 +1,4 @@
-.album-timeline-date {
+.album-timeline-date-info {
     color: #ffffff;
 
     padding-left: 5vw;
@@ -10,7 +10,7 @@
 .vertical-timeline--two-columns
     .vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left)
     .vertical-timeline-element-content
-    .album-timeline-date {
+    .album-timeline-date-info {
     padding-left: 0;
     padding-right: 5vw;
 }
