@@ -1,0 +1,16 @@
+.album-timeline-date {
+    color: #ffffff;
+
+    padding-left: 5vw;
+}
+
+.vertical-timeline--two-columns
+    .vertical-timeline-element.vertical-timeline-element--right
+    .vertical-timeline-element-content,
+.vertical-timeline--two-columns
+    .vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left)
+    .vertical-timeline-element-content
+    .album-timeline-date {
+    padding-left: 0;
+    padding-right: 5vw;
+}
