@@ -4,13 +4,27 @@ import Chip from '@material-ui/core/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { albumType } from '../types';
+import { ArtistLink } from '../../Artists/ArtistLink';
 import { AlbumLink } from '../AlbumLink';
+import { albumType } from '../types';
+import { withRouter } from 'react-router-dom';
 
-const Album = ({ album: { name, album_type, total_tracks }, showType, album }) => {
+const Album = ({
+    album: { name, album_type, total_tracks, artists },
+    showType,
+    album,
+    match: {
+        params: { id: currentArtistId },
+    },
+}) => {
     return (
         <div className="album-timeline-container">
             <div className="album-timeline-title">{name}</div>
+
+            {artists.map(
+                artist =>
+                    artist.id !== currentArtistId && <ArtistLink key={artist.id} artist={artist} />
+            )}
 
             <div className="album-timeline-track-count">{total_tracks} tracks</div>
 
@@ -30,4 +44,6 @@ Album.propTypes = {
     showType: PropTypes.bool.isRequired,
 };
 
-export { Album };
+const ConnectedALbum = withRouter(Album);
+
+export { ConnectedALbum as Album };
