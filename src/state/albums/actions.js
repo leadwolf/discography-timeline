@@ -11,6 +11,10 @@ const searchAllSuccess = result => ({
     type: types.ARTIST_ALBUM_SEARCH_ALL_SUCCESS,
     payload: { ...result },
 });
+const searchAllSuccessReset = result => ({
+    type: types.ARTIST_ALBUM_SEARCH_ALL_SUCCESS_RESET,
+    payload: { ...result },
+});
 
 const sortedAlbums = items => ({
     type: types.ARTIST_ALBUM_SORT,
@@ -32,6 +36,7 @@ export {
     searchSuccess,
     searchAllFail,
     searchAllSuccess,
+    searchAllSuccessReset,
     sortedAlbums,
     reversedAlbums,
     uniqueAlbums,

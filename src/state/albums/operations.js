@@ -45,16 +45,21 @@ const searchAll = (init = false, albumTypes) => (dispatch, getState) => {
     return spotifyApi
         .getArtistAlbums(artistId, {
             ...albumSearchParams,
-            offset: items.length,
+            offset: init ? 0 : items.length,
             album_type: albumTypes.join(','),
         })
         .then(res => {
             const { body } = res;
 
-            dispatch(actions.searchAllSuccess(body));
+            if (init) {
+                dispatch(actions.searchAllSuccessReset(body));
+            } else {
+                dispatch(actions.searchAllSuccess(body));
+            }
+
             return body;
         })
-        .then(() => dispatch(searchAll()))
+        .then(() => dispatch(searchAll(false, albumTypes)))
         .catch(error => {
             dispatch(actions.searchAllFail(error.toString()));
             return Promise.resolve({ isError: true, error });

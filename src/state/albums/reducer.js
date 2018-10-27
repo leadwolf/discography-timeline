@@ -32,6 +32,11 @@ const reducer = (state = initialState, action) => {
                 ...action.payload,
                 items: [...state.items, ...action.payload.items],
             };
+        case types.ARTIST_ALBUM_SEARCH_ALL_SUCCESS_RESET:
+            return {
+                ...state,
+                ...action.payload,
+            };
         case types.ARTIST_ALBUM_SORT: {
             return { ...state, ...action.payload };
         }
