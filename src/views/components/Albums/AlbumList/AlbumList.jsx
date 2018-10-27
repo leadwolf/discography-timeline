@@ -9,7 +9,7 @@ import { AlbumDate } from '../AlbumDate';
 import { AlbumIcon } from '../AlbumIcon';
 import { albumType } from '../types';
 
-const AlbumList = ({ albums }) => {
+const AlbumList = ({ albums, showType }) => {
     return (
         <div className="album-list-container">
             <VerticalTimeline animate={false}>
@@ -19,7 +19,7 @@ const AlbumList = ({ albums }) => {
                         icon={<AlbumIcon album={album} />}
                         date={<AlbumDate album={album} />}
                     >
-                        <Album album={album} />
+                        <Album album={album} showType={showType} />
                     </VerticalTimelineElement>
                 ))}
             </VerticalTimeline>
@@ -32,6 +32,7 @@ const AlbumList = ({ albums }) => {
 
 AlbumList.propTypes = {
     albums: PropTypes.arrayOf(albumType).isRequired,
+    showType: PropTypes.bool.isRequired,
 };
 
 export { AlbumList };

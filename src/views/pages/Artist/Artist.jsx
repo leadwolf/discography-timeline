@@ -82,7 +82,7 @@ class Artist extends React.Component {
                             handleChange={this.handleFilterChange}
                             handleRemovAlbumType={this.handleRemovAlbumType}
                         />
-                        <AlbumList albums={items} />
+                        <AlbumList albums={items} showType={album_types.length > 1} />
                     </div>
                 </div>
             </div>
