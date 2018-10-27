@@ -8,8 +8,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { operations as albumOperations } from '../../../state/albums';
 import { operations as artistOperations } from '../../../state/artists';
-import { AlbumList } from '../../components/Albums';
-import { AlbumFilters } from '../../components/Albums';
+import { AlbumList } from '../../components/Albums/AlbumList';
+import { AlbumFilters } from '../../components/Albums/AlbumFilters';
 
 class Artist extends React.Component {
     state = {
