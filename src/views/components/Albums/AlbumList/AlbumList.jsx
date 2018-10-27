@@ -12,7 +12,7 @@ import { albumType } from '../types';
 const AlbumList = ({ albums }) => {
     return (
         <div className="album-list-container">
-            <VerticalTimeline>
+            <VerticalTimeline animate={false}>
                 {albums.map(album => (
                     <VerticalTimelineElement
                         key={album.id}

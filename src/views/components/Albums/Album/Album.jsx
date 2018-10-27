@@ -1,12 +1,15 @@
+import './album.scss';
+
 import React from 'react';
 import { albumType } from '../types';
 
-const Album = ({ album: { release_date, release_date_precision, name } }) => {
+import moment from 'moment';
+
+const Album = ({ album: { release_date, name } }) => {
     return (
-        <div className="album-container">
-            <span>{name}</span>
-            <span>{release_date}</span>
-            <span>{release_date_precision}</span>
+        <div className="album-timeline-container">
+            <div className="album-timeline-title">{name}</div>
+            <div className="album-timeline-date">{moment(release_date).format('LL')}</div>
         </div>
     );
 };
