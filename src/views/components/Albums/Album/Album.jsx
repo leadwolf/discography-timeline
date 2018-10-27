@@ -7,10 +7,12 @@ import React from 'react';
 import { albumType } from '../types';
 import { AlbumLink } from '../AlbumLink';
 
-const Album = ({ album: { name, album_type }, showType, album }) => {
+const Album = ({ album: { name, album_type, total_tracks }, showType, album }) => {
     return (
         <div className="album-timeline-container">
             <div className="album-timeline-title">{name}</div>
+
+            <div className="album-timeline-track-count">{total_tracks} tracks</div>
 
             <AlbumLink album={album} />
 
