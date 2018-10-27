@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
 const albumType = PropTypes.shape({
+    external_urls: PropTypes.shape({
+        spotify: PropTypes.string.isRequired,
+    }).isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,

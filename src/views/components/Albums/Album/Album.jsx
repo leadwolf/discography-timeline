@@ -1,17 +1,18 @@
 import './album.scss';
 
-import moment from 'moment';
+import Chip from '@material-ui/core/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { albumType } from '../types';
-import Chip from '@material-ui/core/Chip';
+import { AlbumLink } from '../AlbumLink';
 
-const Album = ({ album: { release_date, name, album_type }, showType }) => {
+const Album = ({ album: { name, album_type }, showType, album }) => {
     return (
         <div className="album-timeline-container">
             <div className="album-timeline-title">{name}</div>
-            <div className="album-timeline-date">{moment(release_date).format('LL')}</div>
+
+            <AlbumLink album={album} />
 
             {showType && (
                 <div className="album-timeline-type">
