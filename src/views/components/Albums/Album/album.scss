@@ -49,14 +49,19 @@
             }
         }
 
-        .alternatives-container {
-            .content-container {
-                display: flex;
-                flex-direction: column;
+        .album-content-right {
+            display: flex;
+            flex-direction: column;
 
-                .divider {
-                    background-color: #000000;
-                    margin-bottom: 5px;
+            .alternatives-container {
+                .content-container {
+                    display: flex;
+                    flex-direction: column;
+
+                    .divider {
+                        background-color: #000000;
+                        margin-bottom: 5px;
+                    }
                 }
             }
         }
