@@ -7,11 +7,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body,
-#root {
-    background-color: #181818;
-}
-
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
@@ -20,4 +15,5 @@ html,
 body,
 #root {
     height: 100%;
+    background-color: #181818;
 }
