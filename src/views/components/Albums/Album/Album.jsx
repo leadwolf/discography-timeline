@@ -55,7 +55,7 @@ const Album = ({
                     <img
                         className={`album-art  ${mini ? 'mini' : ''}`}
                         alt={name}
-                        src={images[0].url}
+                        src={mini && images.length > 1 ? images[1].url : images[0].url}
                     />
                 </div>
             )}
