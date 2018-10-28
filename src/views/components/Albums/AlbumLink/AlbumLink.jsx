@@ -16,8 +16,8 @@ const AlbumLink = ({
     return (
         <div className="album-timeline-link">
             <Button variant="outlined" color="primary" size="small" href={spotify} target="_blank">
-                See on Spotify
-                <OpenInNew />
+                Play on Spotify
+                <OpenInNew className="album-link-button-icon" />
             </Button>
         </div>
     );
