@@ -12,8 +12,6 @@ const PRECISION_FORMATS = {
 
 const PRECISION_MAP = new Map(Object.entries(PRECISION_FORMATS));
 
-console.log(PRECISION_MAP);
-
 const getMomentFromReleaseDate = (date, precision) => {
     if (!PRECISION_MAP.get(precision)) return moment(0);
 

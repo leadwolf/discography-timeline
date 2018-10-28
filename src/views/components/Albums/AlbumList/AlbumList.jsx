@@ -11,9 +11,7 @@ import { AlbumDate } from '../AlbumDate';
 import { AlbumIcon } from '../AlbumIcon';
 import { albumType } from '../types';
 
-const AlbumList = ({ albums, showType }) => {
-    const { total, items, transformedItems, initialized } = albums;
-
+const AlbumList = ({ albums: { total, items, transformedItems, initialized }, showType }) => {
     let progress = 0;
     if (!initialized && total > 0) progress = (items.length / total) * 100;
 

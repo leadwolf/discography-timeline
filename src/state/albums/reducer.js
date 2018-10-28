@@ -54,7 +54,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
                 items: action.payload.initialized ? state.items : [],
-                transformedItems: action.payload.initialized ? state.items : [],
+                transformedItems: action.payload.initialized ? state.transformedItems : [],
                 total: action.payload.initialized ? state.total : 0,
             };
         }
