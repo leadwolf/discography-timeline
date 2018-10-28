@@ -1,5 +1,6 @@
 import './loginResult.scss';
 
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -7,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { operations } from '../../../state/auth';
+import { authorizeURL } from '../../../state/spotify';
 import { CenterInfo } from '../../components/general';
 
 const queryString = require('query-string');
@@ -53,6 +55,12 @@ class LoginResult extends Component {
                     {loading && 'Logging in...'}
                     {error && 'An error occurred, please try again'}
                 </Typography>
+
+                {error && (
+                    <Button variant="contained" color="primary" href={authorizeURL}>
+                        Login
+                    </Button>
+                )}
             </CenterInfo>
         );
     }
