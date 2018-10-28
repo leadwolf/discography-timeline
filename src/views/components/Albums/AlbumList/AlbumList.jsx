@@ -24,10 +24,18 @@ const AlbumList = ({ albums: { total, items, filteredItems, initialized }, showT
         );
     }
 
+    if (!items.length) {
+        return (
+            <div className="album-list-no-results-container">
+                <div className="message">No albums found for this artist (all types).</div>
+            </div>
+        );
+    }
+
     if (!filteredItems.length) {
         return (
             <div className="album-list-no-results-container">
-                <div className="message">No albums found</div>
+                <div className="message">No albums found for the selected filters</div>
             </div>
         );
     }
@@ -39,12 +47,17 @@ const AlbumList = ({ albums: { total, items, filteredItems, initialized }, showT
     return (
         <div className="album-list-container">
             <div className="results-info">
-                <Typography>{`${totalAmountFiltered} album${
-                    totalAmountFiltered > 1 ? 's' : ''
-                } found`}</Typography>
-                <Typography>{`${filteredItems.length} unique album${
-                    filteredItems.length > 1 ? 's' : ''
-                } found`}</Typography>
+                <Typography>
+                    {`${items.length} total album${items.length > 1 ? 's' : ''} found`}
+                    <br />
+                    {`${totalAmountFiltered} album${
+                        totalAmountFiltered > 1 ? 's' : ''
+                    } found (filtered)`}
+                    <br />
+                    {`${filteredItems.length} unique album${
+                        filteredItems.length > 1 ? 's' : ''
+                    } found (filtered)`}
+                </Typography>
             </div>
             <VerticalTimeline animate={false} className="app override">
                 {filteredItems.map(album => (
