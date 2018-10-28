@@ -22,7 +22,7 @@ const search = artistId => dispatch => {
  *
  * @param {Boolean} init - If should run the query, even there are no previous items and total
  */
-const searchAll = (init = false, albumTypes) => (dispatch, getState) => {
+const searchAll = (init = false) => (dispatch, getState) => {
     const {
         albums: { total, items },
         artists: {
@@ -46,7 +46,6 @@ const searchAll = (init = false, albumTypes) => (dispatch, getState) => {
         .getArtistAlbums(artistId, {
             ...albumSearchParams,
             offset: init ? 0 : items.length,
-            album_type: albumTypes.join(','),
         })
         .then(res => {
             const { body } = res;
@@ -59,7 +58,7 @@ const searchAll = (init = false, albumTypes) => (dispatch, getState) => {
 
             return body;
         })
-        .then(() => dispatch(searchAll(false, albumTypes)))
+        .then(() => dispatch(searchAll(false)))
         .catch(error => {
             dispatch(actions.searchAllFail(error.toString()));
             return Promise.resolve({ isError: true, error });

@@ -34,7 +34,7 @@ class Artist extends React.Component {
         setAlbumsInitialized(false);
 
         searchArtist(id)
-            .then(() => searchAlbumsRecursive(true, album_types))
+            .then(() => searchAlbumsRecursive(true))
             .then(() => sortAlbums(true))
             .then(filterUniqueAlbums)
             .then(() => setAlbumsInitialized(true));
@@ -51,7 +51,7 @@ class Artist extends React.Component {
 
         setAlbumsInitialized(false);
 
-        searchAlbumsRecursive(true, album_types)
+        searchAlbumsRecursive(true)
             .then(() => sortAlbums(true))
             .then(filterUniqueAlbums)
             .then(() => setAlbumsInitialized(true));
@@ -120,8 +120,7 @@ const mapStateToProps = state => ({ artists: state.artists, albums: state.albums
 const mapDispatchToProps = dispatch => ({
     searchArtist: id => dispatch(artistOperations.getSingleArtist(id)),
     searchArtistAlbums: id => dispatch(albumOperations.search(id)),
-    searchAlbumsRecursive: (init, albumTypes) =>
-        dispatch(albumOperations.searchAll(init, albumTypes)),
+    searchAlbumsRecursive: init => dispatch(albumOperations.searchAll(init)),
     sortAlbums: () => dispatch(albumOperations.sortAlbums()),
     filterUniqueAlbums: () => dispatch(albumOperations.filterUniqueAlbums()),
     setAlbumsInitialized: initialized => dispatch(albumActions.setInitialized(initialized)),
