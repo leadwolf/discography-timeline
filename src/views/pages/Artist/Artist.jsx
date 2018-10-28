@@ -11,6 +11,7 @@ import { actions as albumActions, operations as albumOperations } from '../../..
 import { operations as artistOperations } from '../../../state/artists';
 import { AlbumFilters } from '../../components/Albums/AlbumFilters';
 import { AlbumList } from '../../components/Albums/AlbumList';
+import { ArtistHeader } from '../../components/Artists/ArtistHeader';
 
 class Artist extends React.Component {
     state = {
@@ -72,10 +73,7 @@ class Artist extends React.Component {
 
     render() {
         const {
-            artists: {
-                selectedArtist: { name },
-                initializedSelectedArtist,
-            },
+            artists: { selectedArtist, initializedSelectedArtist },
             albums,
         } = this.props;
         const { album_types } = this.state;
@@ -91,9 +89,7 @@ class Artist extends React.Component {
 
         return (
             <div className="page-artist-container">
-                <div className="name-container">
-                    <Typography variant="h2">{name}</Typography>
-                </div>
+                <ArtistHeader artist={selectedArtist} />
 
                 <div className="albums-container">
                     <div className="title-container">
