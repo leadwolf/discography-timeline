@@ -1,9 +1,8 @@
 import './albumLink.scss';
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import OpenInNew from '@material-ui/icons/OpenInNew';
+import React from 'react';
 
 import { albumType } from '../types';
 
