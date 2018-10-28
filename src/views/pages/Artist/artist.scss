@@ -1,5 +1,12 @@
 @import '../../../theme';
 
+@media only screen and (min-width: 1170px) {
+    .vertical-timeline.app.override {
+        width: 80vw;
+        max-width: 80vw;
+    }
+}
+
 .page-artist-loader-container {
     display: flex;
     flex-direction: column;
@@ -19,13 +26,13 @@
 
 .page-artist-container {
     background-color: #181818;
-    .content-container {
+    > .content-container {
         padding: $spacing;
 
         .albums-container {
-            .title-container {
+            > .title-container {
             }
-            .content-container {
+            > .content-container {
             }
         }
     }

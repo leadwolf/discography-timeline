@@ -33,7 +33,7 @@ const AlbumList = ({ albums: { total, items, transformedItems, initialized }, sh
 
     return (
         <div className="album-list-container">
-            <VerticalTimeline animate={false}>
+            <VerticalTimeline animate={false} className="app override">
                 {transformedItems.map(album => (
                     <VerticalTimelineElement
                         key={album.id}
