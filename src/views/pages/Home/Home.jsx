@@ -45,6 +45,14 @@ class Home extends Component {
                 </div>
                 <div className="page-home-content-container">
                     {items.length > 0 && (
+                        <div className="results-info">
+                            <Typography>
+                                {`${total} artist${total > 1 ? 's' : ''} found`}
+                            </Typography>
+                        </div>
+                    )}
+
+                    {items.length > 0 && (
                         <ArtistList loadMore={loadMore} hasMore={hasMore} artists={items} />
                     )}
                     {items.length === 0 && (
