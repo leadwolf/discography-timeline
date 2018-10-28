@@ -3,11 +3,11 @@ import './album.scss';
 import Chip from '@material-ui/core/Chip';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { ArtistLink } from '../../Artists/ArtistLink';
 import { AlbumLink } from '../AlbumLink';
 import { albumType } from '../types';
-import { withRouter } from 'react-router-dom';
 
 const Album = ({
     album: { name, album_type, total_tracks, artists },
