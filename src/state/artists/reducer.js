@@ -12,6 +12,7 @@ const initialState = {
     total: 0,
 
     selectedArtist: {},
+    initializedSelectedArtist: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,10 +33,11 @@ const reducer = (state = initialState, action) => {
             return { ...state, ...action.payload };
         case types.ARTISTS_SEARCH_CLEAR:
             return { ...initialState };
+
         case types.ARTISTS_SEARCH_SINGLE_SUCCESS:
-            return { ...state, selectedArtist: action.payload };
+            return { ...state, selectedArtist: action.payload, initializedSelectedArtist: true };
         case types.ARTISTS_SEARCH_SINGLE_FAIL:
-            return { ...state, selectedArtist: {} };
+            return { ...state, selectedArtist: {}, initializedSelectedArtist: true };
     }
 };
 

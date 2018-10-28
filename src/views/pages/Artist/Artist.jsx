@@ -1,15 +1,16 @@
 import './artist.scss';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { operations as albumOperations, actions as albumActions } from '../../../state/albums';
+import { actions as albumActions, operations as albumOperations } from '../../../state/albums';
 import { operations as artistOperations } from '../../../state/artists';
-import { AlbumList } from '../../components/Albums/AlbumList';
 import { AlbumFilters } from '../../components/Albums/AlbumFilters';
+import { AlbumList } from '../../components/Albums/AlbumList';
 
 class Artist extends React.Component {
     state = {
@@ -52,7 +53,7 @@ class Artist extends React.Component {
         searchAlbumsRecursive(true, album_types)
             .then(() => sortAlbums(true))
             .then(filterUniqueAlbums)
-            .then(() => setInitialized(true));
+            .then(() => setAlbumsInitialized(true));
     };
 
     handleFilterChange = e =>
@@ -73,10 +74,20 @@ class Artist extends React.Component {
         const {
             artists: {
                 selectedArtist: { name },
+                initializedSelectedArtist,
             },
             albums,
         } = this.props;
         const { album_types } = this.state;
+
+        if (!initializedSelectedArtist) {
+            return (
+                <div className="page-artist-loader-container">
+                    <CircularProgress size={50} />
+                    <div className="loading-message">Loading...</div>
+                </div>
+            );
+        }
 
         return (
             <div className="page-artist-container">
