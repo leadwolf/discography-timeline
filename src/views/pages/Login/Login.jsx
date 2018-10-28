@@ -21,7 +21,12 @@ function Login({ classes }) {
                 <Typography variant="h5">Please login with Spotify</Typography>
 
                 <Typography className={classes.textBody}>
-                    This application uses your Spotify account to search artists and albums
+                    This application uses your Spotify account to search artists and albums.
+                </Typography>
+
+                <Typography className={classes.textBody}>
+                    <strong>WARNING</strong>: Your account will be linked for one hour. After that,
+                    you will need to login again.
                 </Typography>
 
                 <Button
