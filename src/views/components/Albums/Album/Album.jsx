@@ -26,7 +26,9 @@ const Album = ({
                     artist.id !== currentArtistId && <ArtistLink key={artist.id} artist={artist} />
             )}
 
-            <div className="album-timeline-track-count">{total_tracks} tracks</div>
+            <div className="album-timeline-track-count">{`${total_tracks} track${
+                total_tracks > 1 ? 's' : ''
+            }`}</div>
 
             <AlbumLink album={album} />
 
