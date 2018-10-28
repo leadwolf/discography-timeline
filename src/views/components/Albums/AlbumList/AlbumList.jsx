@@ -12,7 +12,7 @@ import { AlbumDate } from '../AlbumDate';
 import { AlbumIcon } from '../AlbumIcon';
 import { albumType } from '../types';
 
-const AlbumList = ({ albums: { total, items, transformedItems, initialized }, showType }) => {
+const AlbumList = ({ albums: { total, items, filteredItems, initialized }, showType }) => {
     let progress = 0;
     if (!initialized && total > 0) progress = (items.length / total) * 100;
 
@@ -24,7 +24,7 @@ const AlbumList = ({ albums: { total, items, transformedItems, initialized }, sh
         );
     }
 
-    if (!transformedItems.length) {
+    if (!filteredItems.length) {
         return (
             <div className="album-list-no-results-container">
                 <div className="message">No albums found</div>
@@ -32,18 +32,22 @@ const AlbumList = ({ albums: { total, items, transformedItems, initialized }, sh
         );
     }
 
+    const totalAmountFiltered = filteredItems
+        .map(item => 1 + (item.alternatives ? item.alternatives.length : 0))
+        .reduce((a, b) => a + b, 0);
+
     return (
         <div className="album-list-container">
             <div className="results-info">
-                <Typography>{`${items.length} album${
-                    items.length > 1 ? 's' : ''
+                <Typography>{`${totalAmountFiltered} album${
+                    totalAmountFiltered > 1 ? 's' : ''
                 } found`}</Typography>
-                <Typography>{`${transformedItems.length} unique album${
-                    transformedItems.length > 1 ? 's' : ''
+                <Typography>{`${filteredItems.length} unique album${
+                    filteredItems.length > 1 ? 's' : ''
                 } found`}</Typography>
             </div>
             <VerticalTimeline animate={false} className="app override">
-                {transformedItems.map(album => (
+                {filteredItems.map(album => (
                     <VerticalTimelineElement
                         key={album.id}
                         icon={<AlbumIcon album={album} />}
@@ -53,9 +57,6 @@ const AlbumList = ({ albums: { total, items, transformedItems, initialized }, sh
                     </VerticalTimelineElement>
                 ))}
             </VerticalTimeline>
-            {/* {albums.map(album => (
-                <Album key={album.id} album={album} />
-            ))} */}
         </div>
     );
 };

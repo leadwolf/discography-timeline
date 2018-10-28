@@ -27,7 +27,7 @@ const styles = theme => ({
 });
 
 const Album = ({
-    album: { name, album_type, total_tracks, artists, alternatives = [], images = [] },
+    album: { name, album_group, total_tracks, artists, alternatives = [], images = [] },
     showType,
     album,
     mini,
@@ -67,7 +67,7 @@ const Album = ({
                 {showType && (
                     <div className="type">
                         <span className="type-title">Type:</span>
-                        <Chip label={albumTypeToLabel(album_type)} color="primary" />
+                        <Chip label={albumTypeToLabel(album_group)} color="primary" />
                     </div>
                 )}
 
