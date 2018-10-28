@@ -107,13 +107,10 @@ $avatar-big: 43vw;
     background-color: #1e88e5;
 }
 
-.artist-avatar-text-content {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    width: 75%;
-    text-align: center;
+.artist-avatar-person-icon,
+.artist-avatar-person-icon.override {
+    font-size: 8vw;
+    color: #252525;
 }
 
 // NAME

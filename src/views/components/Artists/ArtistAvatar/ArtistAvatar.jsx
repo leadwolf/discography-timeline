@@ -7,6 +7,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
 import { artistItemPropType } from './types';
+import PersonOutline from '@material-ui/icons/PersonOutline';
 
 const styles = theme => ({
     name: {
@@ -28,11 +29,9 @@ const ArtistAvatar = ({ classes, artist: { id, name, images }, history }) => {
             );
 
         return (
-            <div className="artist-avatar-img artist-avatar-text-container">
-                <div className="artist-avatar-text-content">
-                    <Typography className={classes.name}>{name}</Typography>
-                </div>
-            </div>
+            <Link to={artistLink} className="artist-avatar-img artist-avatar-text-container">
+                <PersonOutline className="artist-avatar-person-icon override" />
+            </Link>
         );
     };
 
