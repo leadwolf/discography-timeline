@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { operations as albumOperations } from '../../../state/albums';
+import { operations as albumOperations, actions as albumActions } from '../../../state/albums';
 import { operations as artistOperations } from '../../../state/artists';
 import { AlbumList } from '../../components/Albums/AlbumList';
 import { AlbumFilters } from '../../components/Albums/AlbumFilters';
@@ -26,21 +26,31 @@ class Artist extends React.Component {
             searchAlbumsRecursive,
             sortAlbums,
             filterUniqueAlbums,
+            setInitialized,
         } = this.props;
 
         searchArtist(id)
             .then(() => searchAlbumsRecursive(true, album_types))
             .then(() => sortAlbums(true))
-            .then(filterUniqueAlbums);
+            .then(filterUniqueAlbums)
+            .then(() => setInitialized(true));
     }
 
     updateFilters = () => {
         const { album_types } = this.state;
-        const { searchAlbumsRecursive, sortAlbums, filterUniqueAlbums } = this.props;
+        const {
+            searchAlbumsRecursive,
+            sortAlbums,
+            filterUniqueAlbums,
+            setInitialized,
+        } = this.props;
+
+        setInitialized(false);
 
         searchAlbumsRecursive(true, album_types)
             .then(() => sortAlbums(true))
-            .then(filterUniqueAlbums);
+            .then(filterUniqueAlbums)
+            .then(() => setInitialized(true));
     };
 
     handleFilterChange = e =>
@@ -62,7 +72,7 @@ class Artist extends React.Component {
             artists: {
                 selectedArtist: { name },
             },
-            albums: { items },
+            albums: { items, initialized },
         } = this.props;
         const { album_types } = this.state;
 
@@ -82,7 +92,11 @@ class Artist extends React.Component {
                             handleChange={this.handleFilterChange}
                             handleRemovAlbumType={this.handleRemovAlbumType}
                         />
-                        <AlbumList albums={items} showType={album_types.length > 1} />
+                        <AlbumList
+                            albums={items}
+                            showType={album_types.length > 1}
+                            loading={!initialized}
+                        />
                     </div>
                 </div>
             </div>
@@ -103,6 +117,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(albumOperations.searchAll(init, albumTypes)),
     sortAlbums: () => dispatch(albumOperations.sortAlbums()),
     filterUniqueAlbums: () => dispatch(albumOperations.filterUniqueAlbums()),
+    setInitialized: initialized => dispatch(albumActions.setInitialized(initialized)),
 });
 
 const ConnectedArtist = withRouter(

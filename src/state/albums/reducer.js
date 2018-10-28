@@ -2,6 +2,7 @@ import { types } from '.';
 
 const initialState = {
     artistId: '',
+    initialized: false,
 
     href: '',
     items: [],
@@ -45,6 +46,10 @@ const reducer = (state = initialState, action) => {
         }
         case types.ARTIST_ALBUM_UNIQUE_FILTER:
             return { ...state, ...action.payload };
+
+        case types.ARTIST_ALBUM_SET_INITIALIZED: {
+            return { ...state, ...action.payload };
+        }
     }
 };
 

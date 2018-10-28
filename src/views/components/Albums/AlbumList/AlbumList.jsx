@@ -9,7 +9,11 @@ import { AlbumDate } from '../AlbumDate';
 import { AlbumIcon } from '../AlbumIcon';
 import { albumType } from '../types';
 
-const AlbumList = ({ albums, showType }) => {
+const AlbumList = ({ albums, showType, loading }) => {
+    if (loading) {
+        return 'Loading...';
+    }
+
     return (
         <div className="album-list-container">
             <VerticalTimeline animate={false}>
@@ -33,6 +37,7 @@ const AlbumList = ({ albums, showType }) => {
 AlbumList.propTypes = {
     albums: PropTypes.arrayOf(albumType).isRequired,
     showType: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
 };
 
 export { AlbumList };

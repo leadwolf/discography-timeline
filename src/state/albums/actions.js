@@ -31,6 +31,11 @@ const uniqueAlbums = items => ({
     payload: { items },
 });
 
+const setInitialized = initialized => ({
+    type: types.ARTIST_ALBUM_SET_INITIALIZED,
+    payload: { initialized },
+});
+
 export {
     searchFail,
     searchSuccess,
@@ -40,4 +45,5 @@ export {
     sortedAlbums,
     reversedAlbums,
     uniqueAlbums,
+    setInitialized,
 };
