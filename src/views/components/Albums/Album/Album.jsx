@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import { albumTypeToLabel } from '../../../../utils/albumUtils';
 import { ArtistLink } from '../../Artists/ArtistLink';
 import { AlbumLink } from '../AlbumLink';
 import { albumType } from '../types';
@@ -65,7 +66,8 @@ const Album = ({
 
                 {showType && (
                     <div className="type">
-                        <Chip label={album_type} color="primary" />
+                        <span className="type-title">Type:</span>
+                        <Chip label={albumTypeToLabel(album_type)} color="primary" />
                     </div>
                 )}
 

@@ -14,6 +14,21 @@
 
     .type {
         margin: $spacingMedium 0px;
+
+        display: flex;
+        flex-direction: row;
+
+        .type-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+
+            margin-right: $spacingMedium;
+            padding-bottom: 2px;
+        }
     }
 
     .track-count {
