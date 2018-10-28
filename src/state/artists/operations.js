@@ -4,17 +4,11 @@ import { actions as authActions } from '../auth';
 
 const debounce = require('lodash.debounce');
 
-const search = query => (dispatch, getState) => {
+const search = query => dispatch => {
     if (!spotifyApi.getAccessToken()) {
         dispatch(authActions.logout());
         return { isError: 'true', error: new Error('Not logged in') };
     }
-
-    const {
-        artists: { query: prevQuery },
-    } = getState();
-
-    if (prevQuery !== query) dispatch(actions.setQuery(query));
 
     return spotifyApi
         .searchArtists(query)

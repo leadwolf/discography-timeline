@@ -14,19 +14,15 @@ const debounce = require('lodash.debounce');
 class Home extends Component {
     static propTypes = {};
 
-    state = {
-        value: '',
-    };
-
     debouncedSearch = debounce(this.props.search, 400, { leading: true });
 
     handleChange = e => {
         const {
             target: { value },
         } = e;
-        const { clearSearch } = this.props;
+        const { clearSearch, setQuery } = this.props;
 
-        this.setState({ value });
+        setQuery(value);
         if (value) {
             this.debouncedSearch(value);
         } else {
@@ -35,9 +31,8 @@ class Home extends Component {
     };
 
     render() {
-        const { value } = this.state;
         const {
-            artists: { items, total, offset },
+            artists: { items, total, offset, query },
             loadMore,
         } = this.props;
 
@@ -46,7 +41,7 @@ class Home extends Component {
         return (
             <div className="page-home-container">
                 <div>
-                    <Search value={value} handleChange={this.handleChange} />
+                    <Search value={query} handleChange={this.handleChange} />
                 </div>
                 <div className="page-home-content-container">
                     {items.length > 0 && (
@@ -55,8 +50,8 @@ class Home extends Component {
                     {items.length === 0 && (
                         <CenterInfo>
                             <Typography>
-                                {value && 'No results were found'}
-                                {!value && 'Enter a search term'}
+                                {query && 'No results were found'}
+                                {!query && 'Enter a search term'}
                             </Typography>
                         </CenterInfo>
                     )}
@@ -74,6 +69,7 @@ const mapDispatchToProps = dispatch => ({
     search: query => dispatch(operations.search(query)),
     loadMore: () => dispatch(operations.loadMore()),
     clearSearch: () => dispatch(actions.clearSearch()),
+    setQuery: query => dispatch(actions.setQuery(query)),
 });
 
 const ConnectedHome = connect(
