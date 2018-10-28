@@ -40,7 +40,7 @@ const Album = ({
 }) => {
     return (
         <div className="album-timeline-container">
-            <div className={`album-timeline-title ${mini ? 'mini' : ''}`}>{name}</div>
+            <div className={`title ${mini ? 'mini' : ''}`}>{name}</div>
 
             {artists.map(
                 artist =>
@@ -48,14 +48,14 @@ const Album = ({
                     !hideArtistName && <ArtistLink key={artist.id} artist={artist} />
             )}
 
-            <div className="album-timeline-track-count">{`${total_tracks} track${
+            <div className="track-count">{`${total_tracks} track${
                 total_tracks > 1 ? 's' : ''
             }`}</div>
 
             <AlbumLink album={album} />
 
             {showType && (
-                <div className="album-timeline-type">
+                <div className="type">
                     <Chip label={album_type} color="primary" />
                 </div>
             )}
@@ -72,7 +72,7 @@ const Album = ({
                                 }  (explicit, deluxe...)`}
                             </Typography>
                         </ExpansionPanelSummary>
-                        <ExpansionPanelDetails classes={{ root: 'alternatives-content-container' }}>
+                        <ExpansionPanelDetails classes={{ root: 'content-container' }}>
                             {alternatives.map((alt, index) => (
                                 <React.Fragment key={alt.id}>
                                     <Album album={alt} showType={showType} mini hideArtistName />

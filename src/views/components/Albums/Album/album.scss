@@ -3,24 +3,24 @@
 .album-timeline-container {
     color: #000000;
 
-    .album-timeline-title {
+    .title {
         font-size: $fontSizeTitle;
         font-weight: bold;
     }
 
-    .album-timeline-title.mini {
+    .title.mini {
         font-size: $fontSizeTitleMini;
     }
 
-    .album-timeline-type {
+    .type {
         margin: $spacingMedium 0px;
     }
 
-    .album-timeline-track-count {
+    .track-count {
     }
 
     .alternatives-container {
-        .alternatives-content-container {
+        .content-container {
             display: flex;
             flex-direction: column;
 
@@ -54,11 +54,11 @@
 */
 
     @media (min-width: 768px) and (max-width: 1024px) {
-        .album-timeline-title {
+        .title {
             font-size: $fontSizeTitleTablet;
         }
 
-        .album-timeline-title.mini {
+        .title.mini {
             font-size: $fontSizeTitleTabletMini;
         }
     }
@@ -78,11 +78,11 @@
 */
 
     @media (min-width: 481px) and (max-width: 767px) {
-        .album-timeline-title {
+        .title {
             font-size: $fontSizeTitleTablet;
         }
 
-        .album-timeline-title.mini {
+        .title.mini {
             font-size: $fontSizeTitleTabletMini;
         }
     }
@@ -93,11 +93,11 @@
 */
 
     @media (min-width: 320px) and (max-width: 480px) {
-        .album-timeline-title {
+        .title {
             font-size: $fontSizeTitleMobile;
         }
 
-        .album-timeline-title.mini {
+        .title.mini {
             font-size: $fontSizeTitleMobileMini;
         }
     }
