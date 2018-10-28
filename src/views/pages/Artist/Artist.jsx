@@ -26,16 +26,16 @@ class Artist extends React.Component {
             searchAlbumsRecursive,
             sortAlbums,
             filterUniqueAlbums,
-            setInitialized,
+            setAlbumsInitialized,
         } = this.props;
 
-        setInitialized(false);
+        setAlbumsInitialized(false);
 
         searchArtist(id)
             .then(() => searchAlbumsRecursive(true, album_types))
             .then(() => sortAlbums(true))
             .then(filterUniqueAlbums)
-            .then(() => setInitialized(true));
+            .then(() => setAlbumsInitialized(true));
     }
 
     updateFilters = () => {
@@ -44,10 +44,10 @@ class Artist extends React.Component {
             searchAlbumsRecursive,
             sortAlbums,
             filterUniqueAlbums,
-            setInitialized,
+            setAlbumsInitialized,
         } = this.props;
 
-        setInitialized(false);
+        setAlbumsInitialized(false);
 
         searchAlbumsRecursive(true, album_types)
             .then(() => sortAlbums(true))
@@ -115,7 +115,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(albumOperations.searchAll(init, albumTypes)),
     sortAlbums: () => dispatch(albumOperations.sortAlbums()),
     filterUniqueAlbums: () => dispatch(albumOperations.filterUniqueAlbums()),
-    setInitialized: initialized => dispatch(albumActions.setInitialized(initialized)),
+    setAlbumsInitialized: initialized => dispatch(albumActions.setInitialized(initialized)),
 });
 
 const ConnectedArtist = withRouter(
