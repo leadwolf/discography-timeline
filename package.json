@@ -33,7 +33,8 @@
         "eject": "react-scripts eject",
         "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
         "predeploy": "yarn build && echo timeline.ccaroni.com > ./build/CNAME && mv ./build/index.html ./build/200.html",
-        "deploy": "surge build"
+        "deploy": "surge build",
+        "analyze": "node ./src/scripts/analyze.js"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -52,6 +53,7 @@
         "gh-pages": "^2.0.1",
         "node-sass": "^4.9.3",
         "prettier": "^1.14.3",
-        "surge": "^0.20.1"
+        "surge": "^0.20.1",
+        "webpack-bundle-analyzer": "^3.0.3"
     }
 }
