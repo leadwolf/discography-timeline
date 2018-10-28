@@ -8,11 +8,27 @@
         font-weight: bold;
     }
 
+    .album-timeline-title.mini {
+        font-size: $fontSizeTitleMini;
+    }
+
     .album-timeline-type {
         margin: $spacingMedium 0px;
     }
 
     .album-timeline-track-count {
+    }
+
+    .alternatives-container {
+        .alternatives-content-container {
+            display: flex;
+            flex-direction: column;
+
+            .divider {
+                background-color: #000000;
+                margin-bottom: 5px;
+            }
+        }
     }
 
     /* 
@@ -41,6 +57,10 @@
         .album-timeline-title {
             font-size: $fontSizeTitleTablet;
         }
+
+        .album-timeline-title.mini {
+            font-size: $fontSizeTitleTabletMini;
+        }
     }
 
     /* 
@@ -58,7 +78,13 @@
 */
 
     @media (min-width: 481px) and (max-width: 767px) {
-        //CSS
+        .album-timeline-title {
+            font-size: $fontSizeTitleTablet;
+        }
+
+        .album-timeline-title.mini {
+            font-size: $fontSizeTitleTabletMini;
+        }
     }
 
     /* 
@@ -69,6 +95,10 @@
     @media (min-width: 320px) and (max-width: 480px) {
         .album-timeline-title {
             font-size: $fontSizeTitleMobile;
+        }
+
+        .album-timeline-title.mini {
+            font-size: $fontSizeTitleMobileMini;
         }
     }
 }
