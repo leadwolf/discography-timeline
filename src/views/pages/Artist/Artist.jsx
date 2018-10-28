@@ -29,6 +29,8 @@ class Artist extends React.Component {
             setInitialized,
         } = this.props;
 
+        setInitialized(false);
+
         searchArtist(id)
             .then(() => searchAlbumsRecursive(true, album_types))
             .then(() => sortAlbums(true))

@@ -4,6 +4,8 @@ const initialState = {
     artistId: '',
     initialized: false,
 
+    transformedItems: [],
+
     href: '',
     items: [],
     limit: 50,
@@ -48,7 +50,13 @@ const reducer = (state = initialState, action) => {
             return { ...state, ...action.payload };
 
         case types.ARTIST_ALBUM_SET_INITIALIZED: {
-            return { ...state, ...action.payload };
+            return {
+                ...state,
+                ...action.payload,
+                items: action.payload.initialized ? state.items : [],
+                transformedItems: action.payload.initialized ? state.items : [],
+                total: action.payload.initialized ? state.total : 0,
+            };
         }
     }
 };
