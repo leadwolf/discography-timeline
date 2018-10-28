@@ -26,7 +26,7 @@ const styles = theme => ({
 });
 
 const Album = ({
-    album: { name, album_type, total_tracks, artists, alternatives = [] },
+    album: { name, album_type, total_tracks, artists, alternatives = [], images = [] },
     showType,
     album,
     mini,
@@ -48,6 +48,16 @@ const Album = ({
         )}
 
         <div className="track-count">{`${total_tracks} track${total_tracks > 1 ? 's' : ''}`}</div>
+
+        {images.length > 0 && (
+            <div className="album-art-container">
+                <img
+                    className={`album-art  ${mini ? 'mini' : ''}`}
+                    alt={name}
+                    src={images[0].url}
+                />
+            </div>
+        )}
 
         <AlbumLink album={album} />
 

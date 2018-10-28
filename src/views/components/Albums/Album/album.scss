@@ -17,6 +17,30 @@
     }
 
     .track-count {
+        font-style: italic;
+    }
+
+    .album-art-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        margin: $spacingMedium;
+
+        .album-art {
+            max-width: 40vw;
+            max-height: 40vh;
+            width: auto;
+            height: auto;
+        }
+
+        .album-art.mini {
+            max-width: 25vw;
+            max-height: 25vh;
+            width: auto;
+            height: auto;
+        }
     }
 
     .alternatives-container {
