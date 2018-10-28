@@ -1,3 +1,6 @@
+import './loginResult.scss';
+
+import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -46,8 +49,10 @@ class LoginResult extends Component {
 
         return (
             <CenterInfo>
-                {loading && 'Logging in...'}
-                {error && 'An error occurred, please try again'}
+                <Typography className="login-result-message">
+                    {loading && 'Logging in...'}
+                    {error && 'An error occurred, please try again'}
+                </Typography>
             </CenterInfo>
         );
     }
