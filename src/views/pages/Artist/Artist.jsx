@@ -80,15 +80,15 @@ class Artist extends React.Component {
 
         return (
             <div className="page-artist-container">
-                <div className="page-artist-name-container">
+                <div className="name-container">
                     <Typography variant="h2">{name}</Typography>
                 </div>
 
-                <div className="page-artist-albums-container">
-                    <div className="page-artist-albums-title-container">
+                <div className="albums-container">
+                    <div className="title-container">
                         <Typography variant="h2">Albums</Typography>
                     </div>
-                    <div className="page-artist-albums-content-container">
+                    <div className="content-container">
                         <AlbumFilters
                             typeFilter={album_types}
                             handleChange={this.handleFilterChange}
