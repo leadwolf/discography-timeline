@@ -19,6 +19,7 @@ const params = {
     response_type: 'token',
     redirect_uri: redirectUri,
     state,
+    show_dialog: true,
 };
 
 const query = queryString.stringify(params);
