@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ALBUM_GROUP_TYPES } from '../../../../utils/albumUtils';
+import { ALBUM_GROUP_TYPES, albumTypeToLabel } from '../../../../utils/albumUtils';
 
 const styles = theme => ({
     formControl: {
@@ -36,11 +36,11 @@ const MenuProps = {
     },
 };
 
-const names = ALBUM_GROUP_TYPES;
+const albumTypes = ALBUM_GROUP_TYPES;
 
 const AlbumTypeFilter = ({ classes, theme, filter, handleChange, handleRemove }) => (
     <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="album_types">Chip</InputLabel>
+        <InputLabel htmlFor="album_types">Album type</InputLabel>
         <Select
             multiple
             value={filter}
@@ -51,7 +51,7 @@ const AlbumTypeFilter = ({ classes, theme, filter, handleChange, handleRemove })
                     {selected.map(value => (
                         <Chip
                             key={value}
-                            label={value}
+                            label={albumTypeToLabel(value)}
                             className={classes.chip}
                             onDelete={filter.length > 1 ? () => handleRemove(value) : undefined}
                         />
@@ -60,18 +60,18 @@ const AlbumTypeFilter = ({ classes, theme, filter, handleChange, handleRemove })
             )}
             MenuProps={MenuProps}
         >
-            {names.map(name => (
+            {albumTypes.map(type => (
                 <MenuItem
-                    key={name}
-                    value={name}
+                    key={type}
+                    value={type}
                     style={{
                         fontWeight:
-                            filter.indexOf(name) === -1
+                            filter.indexOf(type) === -1
                                 ? theme.typography.fontWeightRegular
                                 : theme.typography.fontWeightMedium,
                     }}
                 >
-                    {name}
+                    {albumTypeToLabel(type)}
                 </MenuItem>
             ))}
         </Select>
