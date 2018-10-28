@@ -98,4 +98,15 @@ const filterUniqueAlbums = () => (dispatch, getState) => {
     return Promise.resolve(uniqueItems);
 };
 
-export { search, searchAll, sortAlbums, reverse, filterUniqueAlbums };
+const filterAlbumsByType = albumTypes => (dispatch, getState) => {
+    const {
+        albums: { transformedItems },
+    } = getState();
+
+    const filteredAlbums = transformedItems.filter(item => albumTypes.includes(item.album_group));
+
+    dispatch(actions.setFilteredAlbumsByType(filteredAlbums));
+    return Promise.resolve(filteredAlbums);
+};
+
+export { search, searchAll, sortAlbums, reverse, filterUniqueAlbums, filterAlbumsByType };

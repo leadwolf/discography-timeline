@@ -8,8 +8,9 @@ const albumType = PropTypes.shape({
     name: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
     release_date_precision: PropTypes.string.isRequired,
-    album_type: PropTypes.string.isRequired, // from searching from artist
-    type: PropTypes.string.isRequired,
+    album_group: PropTypes.string.isRequired, // "album" , "single" , "compilation" or "appears_on"
+    album_type: PropTypes.string.isRequired, // The type of the album: one of "album" , "single" , or "compilation"
+    type: PropTypes.string.isRequired, // is 'album'
 });
 
 export { albumType };

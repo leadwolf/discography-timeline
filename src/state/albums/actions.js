@@ -36,6 +36,13 @@ const setInitialized = initialized => ({
     payload: { initialized },
 });
 
+const setFilteredAlbumsByType = filteredItems => ({
+    type: types.ARTIST_ALBUM_SET_FILTERED_BY_TYPE,
+    payload: {
+        filteredItems,
+    },
+});
+
 export {
     searchFail,
     searchSuccess,
@@ -46,4 +53,5 @@ export {
     reversedAlbums,
     uniqueAlbums,
     setInitialized,
+    setFilteredAlbumsByType,
 };

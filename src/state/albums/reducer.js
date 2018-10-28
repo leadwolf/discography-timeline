@@ -52,12 +52,15 @@ const reducer = (state = initialState, action) => {
         case types.ARTIST_ALBUM_SET_INITIALIZED: {
             return {
                 ...state,
-                ...action.payload,
-                items: action.payload.initialized ? state.items : [],
-                transformedItems: action.payload.initialized ? state.transformedItems : [],
-                total: action.payload.initialized ? state.total : 0,
+                initialized: action.payload.initialized,
             };
         }
+
+        case types.ARTIST_ALBUM_SET_FILTERED_BY_TYPE:
+            return {
+                ...state,
+                filteredItems: action.payload.filteredItems,
+            };
     }
 };
 

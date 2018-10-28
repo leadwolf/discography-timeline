@@ -10,6 +10,7 @@ const ARTIST_ALBUM_REVERSE = 'app/artist/album/reverse-order';
 const ARTIST_ALBUM_UNIQUE_FILTER = 'app/artist/album/filter/unique';
 
 const ARTIST_ALBUM_SET_INITIALIZED = 'app/artist/album/set/initialized';
+const ARTIST_ALBUM_SET_FILTERED_BY_TYPE = 'app/artist/album/set/filtered/type';
 
 export {
     ARTIST_ALBUM_SEARCH_SUCCESS,
@@ -21,4 +22,5 @@ export {
     ARTIST_ALBUM_REVERSE,
     ARTIST_ALBUM_UNIQUE_FILTER,
     ARTIST_ALBUM_SET_INITIALIZED,
+    ARTIST_ALBUM_SET_FILTERED_BY_TYPE,
 };
