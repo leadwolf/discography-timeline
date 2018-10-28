@@ -2,6 +2,7 @@ import './albumList.scss';
 import 'react-vertical-timeline-component/style.min.css';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
@@ -33,6 +34,14 @@ const AlbumList = ({ albums: { total, items, transformedItems, initialized }, sh
 
     return (
         <div className="album-list-container">
+            <div className="results-info">
+                <Typography>{`${items.length} album${
+                    items.length > 1 ? 's' : ''
+                } found`}</Typography>
+                <Typography>{`${transformedItems.length} unique album${
+                    transformedItems.length > 1 ? 's' : ''
+                } found`}</Typography>
+            </div>
             <VerticalTimeline animate={false} className="app override">
                 {transformedItems.map(album => (
                     <VerticalTimelineElement
