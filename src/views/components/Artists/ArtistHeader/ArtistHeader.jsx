@@ -5,10 +5,16 @@ import Typography from '@material-ui/core/Typography';
 
 import { artistType } from '../types';
 
-const ArtistHeader = ({ artist: { name } }) => {
+const ArtistHeader = ({ artist: { name, images } }) => {
+    const headerStyles = {};
+
+    if (images.length && images[0].url) headerStyles.backgroundImage = `url("${images[0].url}")`;
+
     return (
-        <div className="artist-header-container">
-            <Typography variant="h2">{name}</Typography>
+        <div className="artist-header-container" style={headerStyles}>
+            <Typography variant="h2" className="name">
+                {name}
+            </Typography>
         </div>
     );
 };

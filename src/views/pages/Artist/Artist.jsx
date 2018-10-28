@@ -91,17 +91,19 @@ class Artist extends React.Component {
             <div className="page-artist-container">
                 <ArtistHeader artist={selectedArtist} />
 
-                <div className="albums-container">
-                    <div className="title-container">
-                        <Typography variant="h2">Albums</Typography>
-                    </div>
-                    <div className="content-container">
-                        <AlbumFilters
-                            typeFilter={album_types}
-                            handleChange={this.handleFilterChange}
-                            handleRemovAlbumType={this.handleRemovAlbumType}
-                        />
-                        <AlbumList albums={albums} showType={album_types.length > 1} />
+                <div className="content-container">
+                    <div className="albums-container">
+                        <div className="title-container">
+                            <Typography variant="h2">Albums</Typography>
+                        </div>
+                        <div className="content-container">
+                            <AlbumFilters
+                                typeFilter={album_types}
+                                handleChange={this.handleFilterChange}
+                                handleRemovAlbumType={this.handleRemovAlbumType}
+                            />
+                            <AlbumList albums={albums} showType={album_types.length > 1} />
+                        </div>
                     </div>
                 </div>
             </div>

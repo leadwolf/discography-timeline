@@ -18,12 +18,15 @@
 }
 
 .page-artist-container {
-    padding: $spacing;
+    background-color: #181818;
+    .content-container {
+        padding: $spacing;
 
-    .albums-container {
-        .title-container {
-        }
-        .content-container {
+        .albums-container {
+            .title-container {
+            }
+            .content-container {
+            }
         }
     }
 }
