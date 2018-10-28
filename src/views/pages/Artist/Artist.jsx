@@ -72,7 +72,7 @@ class Artist extends React.Component {
             artists: {
                 selectedArtist: { name },
             },
-            albums: { items, initialized },
+            albums,
         } = this.props;
         const { album_types } = this.state;
 
@@ -92,11 +92,7 @@ class Artist extends React.Component {
                             handleChange={this.handleFilterChange}
                             handleRemovAlbumType={this.handleRemovAlbumType}
                         />
-                        <AlbumList
-                            albums={items}
-                            showType={album_types.length > 1}
-                            loading={!initialized}
-                        />
+                        <AlbumList albums={albums} showType={album_types.length > 1} />
                     </div>
                 </div>
             </div>

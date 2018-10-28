@@ -1,5 +1,7 @@
+import './albumList.scss';
 import 'react-vertical-timeline-component/style.min.css';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
@@ -9,15 +11,24 @@ import { AlbumDate } from '../AlbumDate';
 import { AlbumIcon } from '../AlbumIcon';
 import { albumType } from '../types';
 
-const AlbumList = ({ albums, showType, loading }) => {
-    if (loading) {
-        return 'Loading...';
+const AlbumList = ({ albums, showType }) => {
+    const { total, items, transformedItems, initialized } = albums;
+
+    let progress = 0;
+    if (!initialized && total > 0) progress = (items.length / total) * 100;
+
+    if (!initialized) {
+        return (
+            <div className="album-list-loader-container">
+                <CircularProgress variant="determinate" value={progress} size={60} />
+            </div>
+        );
     }
 
     return (
         <div className="album-list-container">
             <VerticalTimeline animate={false}>
-                {albums.map(album => (
+                {transformedItems.map(album => (
                     <VerticalTimelineElement
                         key={album.id}
                         icon={<AlbumIcon album={album} />}
@@ -35,9 +46,11 @@ const AlbumList = ({ albums, showType, loading }) => {
 };
 
 AlbumList.propTypes = {
-    albums: PropTypes.arrayOf(albumType).isRequired,
+    albums: PropTypes.shape({
+        items: PropTypes.arrayOf(albumType).isRequired,
+        initialized: PropTypes.bool.isRequired,
+    }).isRequired,
     showType: PropTypes.bool.isRequired,
-    loading: PropTypes.bool.isRequired,
 };
 
 export { AlbumList };

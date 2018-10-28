@@ -26,9 +26,9 @@ const reversedAlbums = items => ({
     payload: { items },
 });
 
-const uniqueAlbums = items => ({
+const uniqueAlbums = transformedItems => ({
     type: types.ARTIST_ALBUM_UNIQUE_FILTER,
-    payload: { items },
+    payload: { transformedItems },
 });
 
 const setInitialized = initialized => ({
