@@ -82,7 +82,7 @@ const Album = ({
                                 <Typography>
                                     {`${alternatives.length} alternative version${
                                         alternatives.length > 1 ? 's' : ''
-                                    }  (explicit, deluxe...)`}
+                                    }`}
                                 </Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails classes={{ root: 'content-container' }}>
