@@ -23,6 +23,14 @@ const AlbumList = ({ albums: { total, items, transformedItems, initialized }, sh
         );
     }
 
+    if (!transformedItems.length) {
+        return (
+            <div className="album-list-no-results-container">
+                <div className="message">No albums found</div>
+            </div>
+        );
+    }
+
     return (
         <div className="album-list-container">
             <VerticalTimeline animate={false}>
