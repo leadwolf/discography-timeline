@@ -49,49 +49,51 @@ const Album = ({
 
         <div className="track-count">{`${total_tracks} track${total_tracks > 1 ? 's' : ''}`}</div>
 
-        {images.length > 0 && (
-            <div className="album-art-container">
-                <img
-                    className={`album-art  ${mini ? 'mini' : ''}`}
-                    alt={name}
-                    src={images[0].url}
-                />
-            </div>
-        )}
+        <div className={`album-content-container ${mini ? 'mini' : ''}`}>
+            {images.length > 0 && (
+                <div className="album-art-container">
+                    <img
+                        className={`album-art  ${mini ? 'mini' : ''}`}
+                        alt={name}
+                        src={images[0].url}
+                    />
+                </div>
+            )}
 
-        <AlbumLink album={album} />
+            <AlbumLink album={album} />
 
-        {showType && (
-            <div className="type">
-                <Chip label={album_type} color="primary" />
-            </div>
-        )}
+            {showType && (
+                <div className="type">
+                    <Chip label={album_type} color="primary" />
+                </div>
+            )}
 
-        {alternatives.length > 0 && (
-            <div className="alternatives-container">
-                <ExpansionPanel classes={{ root: classes.expansionPanel }}>
-                    <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon classes={{ root: classes.expandIcon }} />}
-                    >
-                        <Typography>
-                            {`${alternatives.length} alternative version${
-                                alternatives.length > 1 ? 's' : ''
-                            }  (explicit, deluxe...)`}
-                        </Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails classes={{ root: 'content-container' }}>
-                        {alternatives.map((alt, index) => (
-                            <React.Fragment key={alt.id}>
-                                <Album album={alt} showType={showType} mini hideArtistName />
-                                {index < alternatives.length - 1 && (
-                                    <Divider classes={{ root: 'divider' }} />
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            </div>
-        )}
+            {alternatives.length > 0 && (
+                <div className="alternatives-container">
+                    <ExpansionPanel classes={{ root: classes.expansionPanel }}>
+                        <ExpansionPanelSummary
+                            expandIcon={<ExpandMoreIcon classes={{ root: classes.expandIcon }} />}
+                        >
+                            <Typography>
+                                {`${alternatives.length} alternative version${
+                                    alternatives.length > 1 ? 's' : ''
+                                }  (explicit, deluxe...)`}
+                            </Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails classes={{ root: 'content-container' }}>
+                            {alternatives.map((alt, index) => (
+                                <React.Fragment key={alt.id}>
+                                    <Album album={alt} showType={showType} mini hideArtistName />
+                                    {index < alternatives.length - 1 && (
+                                        <Divider classes={{ root: 'divider' }} />
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                </div>
+            )}
+        </div>
     </div>
 );
 

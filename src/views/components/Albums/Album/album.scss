@@ -20,37 +20,44 @@
         font-style: italic;
     }
 
-    .album-art-container {
+    .album-content-container.mini {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
-
-        margin: $spacingMedium;
-
-        .album-art {
-            max-width: 40vw;
-            max-height: 40vh;
-            width: auto;
-            height: auto;
-        }
-
-        .album-art.mini {
-            max-width: 25vw;
-            max-height: 25vh;
-            width: auto;
-            height: auto;
-        }
     }
 
-    .alternatives-container {
-        .content-container {
+    .album-content-container {
+        .album-art-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
 
-            .divider {
-                background-color: #000000;
-                margin-bottom: 5px;
+            margin: $spacingMedium;
+
+            .album-art {
+                max-width: 40vw;
+                max-height: 40vh;
+                width: auto;
+                height: auto;
+            }
+
+            .album-art.mini {
+                max-width: 25vw;
+                max-height: 25vh;
+                width: auto;
+                height: auto;
+            }
+        }
+
+        .alternatives-container {
+            .content-container {
+                display: flex;
+                flex-direction: column;
+
+                .divider {
+                    background-color: #000000;
+                    margin-bottom: 5px;
+                }
             }
         }
     }
