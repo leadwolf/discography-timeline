@@ -65,12 +65,12 @@ const searchAll = (init = false) => (dispatch, getState) => {
         });
 };
 
-const sortAlbums = (reverse = true) => (dispatch, getState) => {
+const sortAlbums = (reverseOrder = true) => (dispatch, getState) => {
     const {
         albums: { items },
     } = getState();
 
-    const sortedItems = items.sort(reverse ? helpers.dateSorter : helpers.reverseDateSorter);
+    const sortedItems = items.sort(reverseOrder ? helpers.dateSorter : helpers.reverseDateSorter);
 
     dispatch(actions.sortedAlbums(sortedItems));
     return Promise.resolve(sortedItems);
@@ -87,15 +87,18 @@ const reverse = () => (dispatch, getState) => {
     return Promise.resolve(reversedItems);
 };
 
-const filterUniqueAlbums = () => (dispatch, getState) => {
+const filterUniqueAlbums = (reverseOrder = true) => (dispatch, getState) => {
     const {
         albums: { items },
     } = getState();
 
     const uniqueItems = helpers.transformAlbums(items);
+    const reSortedItems = uniqueItems.sort(
+        reverseOrder ? helpers.dateSorter : helpers.reverseDateSorter
+    );
 
-    dispatch(actions.uniqueAlbums(uniqueItems));
-    return Promise.resolve(uniqueItems);
+    dispatch(actions.uniqueAlbums(reSortedItems));
+    return Promise.resolve(reSortedItems);
 };
 
 const filterAlbumsByType = albumTypes => (dispatch, getState) => {
