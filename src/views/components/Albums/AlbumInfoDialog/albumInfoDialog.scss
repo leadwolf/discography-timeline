@@ -1,6 +1,14 @@
 @import '../../../../theme.scss';
 
 .album-info-dialog-root.override {
+    .aid-content-loading {
+        padding: calc(#{$spacing} * 2) 0px;
+
+        .aid-content-loading-text {
+            padding: $spacing 0px;
+        }
+    }
+
     .aid-track-list-title {
         margin: $spacingMidSmall 0px;
     }
