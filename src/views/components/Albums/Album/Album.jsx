@@ -15,6 +15,7 @@ import { withRouter } from 'react-router-dom';
 import { albumTypeToLabel } from '../../../../utils/albumUtils';
 import { ArtistLink } from '../../Artists/ArtistLink';
 import { AlbumLink } from '../AlbumLink';
+import { AlbumInfoButton } from '../AlbumInfoButton';
 import { albumType } from '../types';
 
 const styles = theme => ({
@@ -27,7 +28,7 @@ const styles = theme => ({
 });
 
 const Album = ({
-    album: { name, album_group, total_tracks, artists, alternatives = [], images = [] },
+    album: { id, name, album_group, total_tracks, artists, alternatives = [], images = [] },
     showType,
     album,
     mini,
@@ -38,6 +39,7 @@ const Album = ({
         },
     },
     classes,
+    handleInfoClick,
 }) => (
     <div className="album-timeline-container">
         <div className={`title ${mini ? 'mini' : ''}`}>{name}</div>
@@ -65,6 +67,10 @@ const Album = ({
                 <div className="album-content-info">
                     <div className="album-content-info-item">
                         <AlbumLink album={album} />
+                    </div>
+
+                    <div className="album-content-info-item">
+                        <AlbumInfoButton onClick={handleInfoClick} id={id} />
                     </div>
 
                     <div className="album-content-info-item">
@@ -99,6 +105,7 @@ const Album = ({
                                             showType={showType}
                                             mini
                                             hideArtistName
+                                            handleInfoClick={handleInfoClick}
                                         />
                                         {index < alternatives.length - 1 && (
                                             <Divider classes={{ root: 'divider' }} />
@@ -119,11 +126,13 @@ Album.propTypes = {
     showType: PropTypes.bool.isRequired,
     mini: PropTypes.bool,
     hideArtistName: PropTypes.bool,
+    handleInfoClick: PropTypes.func,
 };
 
 Album.defaultProps = {
     mini: false,
     hideArtistName: false,
+    handleInfoClick: () => undefined,
 };
 
 const ConnectedALbum = withRouter(withStyles(styles)(Album));

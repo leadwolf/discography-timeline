@@ -52,15 +52,13 @@
             margin: $spacingMedium;
 
             .album-art {
-                max-width: 40vw;
-                max-height: 40vh;
+                max-width: 20vw;
                 width: auto;
                 height: auto;
             }
 
             .album-art.mini {
-                max-width: 25vw;
-                max-height: 25vh;
+                max-width: 15vw;
                 width: auto;
                 height: auto;
             }
@@ -74,9 +72,10 @@
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
+                margin: $spacingMidSmall 0px;
 
                 .album-content-info-item {
-                    padding: 10px;
+                    padding: $spacingSmall;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -166,6 +165,18 @@
 
         .title.mini {
             font-size: $fontSizeTitleMobileMini;
+        }
+
+        .album-content-container {
+            .album-art-container {
+                .album-art {
+                    max-width: 40vw;
+                }
+
+                .album-art.mini {
+                    max-width: 35vw;
+                }
+            }
         }
     }
 }
