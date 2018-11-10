@@ -70,7 +70,7 @@ const Album = ({
                     </div>
 
                     <div className="album-content-info-item">
-                        <AlbumInfoButton onClick={handleInfoClick} id={id} />
+                        <AlbumInfoButton onClick={() => handleInfoClick(id)} />
                     </div>
 
                     <div className="album-content-info-item">

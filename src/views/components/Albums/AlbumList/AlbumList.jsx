@@ -10,69 +10,95 @@ import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeli
 import { Album } from '../Album';
 import { AlbumDate } from '../AlbumDate';
 import { AlbumIcon } from '../AlbumIcon';
+import { AlbumInfoDialog } from '../AlbumInfoDialog';
 import { albumType } from '../types';
 
-const AlbumList = ({ albums: { total, items, filteredItems, initialized }, showType }) => {
-    let progress = 0;
-    if (!initialized && total > 0) progress = (items.length / total) * 100;
+class AlbumList extends React.Component {
+    state = {
+        openInfoModal: false,
+    };
 
-    if (!initialized) {
+    toggleAlbumInfo = () =>
+        this.setState(({ openInfoModal }) => ({ openInfoModal: !openInfoModal }));
+
+    handleAlbumInfoClick = id => {
+        this.toggleAlbumInfo();
+    };
+
+    render() {
+        const {
+            albums: { total, items, filteredItems, initialized },
+            showType,
+        } = this.props;
+        const { openInfoModal } = this.state;
+
+        let progress = 0;
+        if (!initialized && total > 0) progress = (items.length / total) * 100;
+
+        if (!initialized) {
+            return (
+                <div className="album-list-loader-container">
+                    <CircularProgress variant="determinate" value={progress} size={60} />
+                </div>
+            );
+        }
+
+        if (!items.length) {
+            return (
+                <div className="album-list-no-results-container">
+                    <div className="message">No albums found for this artist (all types).</div>
+                </div>
+            );
+        }
+
+        if (!filteredItems.length) {
+            return (
+                <div className="album-list-no-results-container">
+                    <div className="message">No albums found for the selected filters</div>
+                </div>
+            );
+        }
+
+        const totalAmountFiltered = filteredItems
+            .map(item => 1 + (item.alternatives ? item.alternatives.length : 0))
+            .reduce((a, b) => a + b, 0);
+
         return (
-            <div className="album-list-loader-container">
-                <CircularProgress variant="determinate" value={progress} size={60} />
+            <div className="album-list-container">
+                <div className="results-info">
+                    <Typography>
+                        {`${items.length} total album${items.length > 1 ? 's' : ''} found`}
+                        <br />
+                        {`${totalAmountFiltered} album${
+                            totalAmountFiltered > 1 ? 's' : ''
+                        } found (filtered)`}
+                        <br />
+                        {`${filteredItems.length} unique album${
+                            filteredItems.length > 1 ? 's' : ''
+                        } found (filtered)`}
+                    </Typography>
+                </div>
+                <VerticalTimeline animate={false} className="app override">
+                    {filteredItems.map(album => (
+                        <VerticalTimelineElement
+                            key={album.id}
+                            icon={<AlbumIcon album={album} />}
+                            date={<AlbumDate album={album} />}
+                        >
+                            <Album
+                                album={album}
+                                showType={showType}
+                                handleInfoClick={this.handleAlbumInfoClick}
+                            />
+                        </VerticalTimelineElement>
+                    ))}
+                </VerticalTimeline>
+
+                <AlbumInfoDialog open={openInfoModal} handleClose={this.toggleAlbumInfo} />
             </div>
         );
     }
-
-    if (!items.length) {
-        return (
-            <div className="album-list-no-results-container">
-                <div className="message">No albums found for this artist (all types).</div>
-            </div>
-        );
-    }
-
-    if (!filteredItems.length) {
-        return (
-            <div className="album-list-no-results-container">
-                <div className="message">No albums found for the selected filters</div>
-            </div>
-        );
-    }
-
-    const totalAmountFiltered = filteredItems
-        .map(item => 1 + (item.alternatives ? item.alternatives.length : 0))
-        .reduce((a, b) => a + b, 0);
-
-    return (
-        <div className="album-list-container">
-            <div className="results-info">
-                <Typography>
-                    {`${items.length} total album${items.length > 1 ? 's' : ''} found`}
-                    <br />
-                    {`${totalAmountFiltered} album${
-                        totalAmountFiltered > 1 ? 's' : ''
-                    } found (filtered)`}
-                    <br />
-                    {`${filteredItems.length} unique album${
-                        filteredItems.length > 1 ? 's' : ''
-                    } found (filtered)`}
-                </Typography>
-            </div>
-            <VerticalTimeline animate={false} className="app override">
-                {filteredItems.map(album => (
-                    <VerticalTimelineElement
-                        key={album.id}
-                        icon={<AlbumIcon album={album} />}
-                        date={<AlbumDate album={album} />}
-                    >
-                        <Album album={album} showType={showType} />
-                    </VerticalTimelineElement>
-                ))}
-            </VerticalTimeline>
-        </div>
-    );
-};
+}
 
 AlbumList.propTypes = {
     albums: PropTypes.shape({
