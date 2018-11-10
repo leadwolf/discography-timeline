@@ -1,0 +1,47 @@
+@import '../../../../theme.scss';
+
+.album-track-root {
+    padding: $spacingSmall;
+    margin: $spacingSmall 0px;
+
+    .at-play-icon,
+    .at-music-icon {
+        color: #b5b5b5;
+    }
+
+    .at-play-icon,
+    .at-music-icon {
+        cursor: pointer;
+    }
+
+    .at-explicit {
+        margin: $spacingSmall;
+        margin-left: 0px;
+    }
+
+    .at-artist {
+        margin: $spacingSmall;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        opacity: 0.6;
+    }
+}
+
+.album-track-root:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.album-track-root:not(:hover) .at-play-icon {
+    display: none;
+}
+.album-track-root:hover .at-play-icon {
+    display: inline;
+}
+
+.album-track-root:hover .at-music-icon {
+    display: none;
+}
