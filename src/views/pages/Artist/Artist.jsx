@@ -69,6 +69,7 @@ class Artist extends React.Component {
         const {
             artists: { selectedArtist, initializedSelectedArtist },
             albums,
+            searchSpecificAlbum,
         } = this.props;
         const { album_types } = this.state;
 
@@ -96,7 +97,11 @@ class Artist extends React.Component {
                                 handleChange={this.handleFilterChange}
                                 handleRemovAlbumType={this.handleRemovAlbumType}
                             />
-                            <AlbumList albums={albums} showType={album_types.length > 1} />
+                            <AlbumList
+                                albums={albums}
+                                showType={album_types.length > 1}
+                                searchSpecificAlbum={searchSpecificAlbum}
+                            />
                         </div>
                     </div>
                 </div>
@@ -119,6 +124,7 @@ const mapDispatchToProps = dispatch => ({
     filterUniqueAlbums: () => dispatch(albumOperations.filterUniqueAlbums()),
     setAlbumsInitialized: initialized => dispatch(albumActions.setInitialized(initialized)),
     filterAlbumsByType: albumTypes => dispatch(albumOperations.filterAlbumsByType(albumTypes)),
+    searchSpecificAlbum: id => dispatch(albumOperations.getAlbumDetails(id)),
 });
 
 const ConnectedArtist = withRouter(

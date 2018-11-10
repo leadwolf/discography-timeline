@@ -23,11 +23,12 @@ class AlbumList extends React.Component {
 
     handleAlbumInfoClick = id => {
         this.toggleAlbumInfo();
+        this.props.searchSpecificAlbum(id);
     };
 
     render() {
         const {
-            albums: { total, items, filteredItems, initialized },
+            albums: { total, items, filteredItems, initialized, selectedAlbum },
             showType,
         } = this.props;
         const { openInfoModal } = this.state;
@@ -94,7 +95,11 @@ class AlbumList extends React.Component {
                     ))}
                 </VerticalTimeline>
 
-                <AlbumInfoDialog open={openInfoModal} handleClose={this.toggleAlbumInfo} />
+                <AlbumInfoDialog
+                    open={openInfoModal}
+                    handleClose={this.toggleAlbumInfo}
+                    album={selectedAlbum}
+                />
             </div>
         );
     }
@@ -106,6 +111,11 @@ AlbumList.propTypes = {
         initialized: PropTypes.bool.isRequired,
     }).isRequired,
     showType: PropTypes.bool.isRequired,
+    searchSpecificAlbum: PropTypes.func,
+};
+
+AlbumList.defaultProps = {
+    searchSpecificAlbum: () => undefined,
 };
 
 export { AlbumList };
