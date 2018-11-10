@@ -43,6 +43,16 @@ const setFilteredAlbumsByType = filteredItems => ({
     },
 });
 
+const searchSpecificAlbumSuccess = result => ({
+    type: types.ARTIST_ALBUM__SPECIFIC_SEARCH_SUCCESS,
+    payload: { ...result },
+});
+
+const searchSpecificAlbumFail = error => ({
+    type: types.ARTIST_ALBUM__SPECIFIC_SEARCH_FAIL,
+    payload: { ...error },
+});
+
 export {
     searchFail,
     searchSuccess,
@@ -54,4 +64,6 @@ export {
     uniqueAlbums,
     setInitialized,
     setFilteredAlbumsByType,
+    searchSpecificAlbumSuccess,
+    searchSpecificAlbumFail,
 };

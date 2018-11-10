@@ -13,6 +13,8 @@ const initialState = {
     offset: 0,
     previous: null,
     total: 0,
+
+    selectedAlbum: undefined,
 };
 
 const reducer = (state = initialState, action) => {
@@ -60,6 +62,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredItems: action.payload.filteredItems,
+            };
+        case types.ARTIST_ALBUM__SPECIFIC_SEARCH_SUCCESS:
+            return {
+                ...state,
+                selectedAlbum: action.payload,
             };
     }
 };
