@@ -14,7 +14,11 @@ const initialState = {
     previous: null,
     total: 0,
 
-    selectedAlbum: undefined,
+    selectedAlbum: {
+        loading: false,
+        albumId: '',
+        data: undefined,
+    },
 };
 
 const reducer = (state = initialState, action) => {
@@ -66,7 +70,18 @@ const reducer = (state = initialState, action) => {
         case types.ARTIST_ALBUM__SPECIFIC_SEARCH_SUCCESS:
             return {
                 ...state,
-                selectedAlbum: action.payload,
+                selectedAlbum: {
+                    ...state.selectedAlbum,
+                    data: action.payload,
+                },
+            };
+        case types.ARTIST_ALBUM_SPECIFIC_SEARCH_SET_LOADING:
+            return {
+                ...state,
+                selectedAlbum: {
+                    ...state.selectedAlbum,
+                    loading: action.payload,
+                },
             };
     }
 };

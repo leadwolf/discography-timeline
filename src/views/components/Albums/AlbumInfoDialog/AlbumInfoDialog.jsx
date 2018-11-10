@@ -1,5 +1,6 @@
 import './albumInfoDialog.scss';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import PropTypes from 'prop-types';
@@ -7,7 +8,21 @@ import React from 'react';
 
 import { albumDetailsType } from '../types';
 
-const AlbumInfoDialog = ({ handleClose, open, album: { name = '', tracks = { items: [] } } }) => {
+const AlbumInfoDialog = ({
+    handleClose,
+    open,
+    loading,
+    data: { name = '', tracks = { items: [] } },
+}) => {
+    if (loading)
+        return (
+            <Dialog onClose={handleClose} open={open}>
+                <DialogTitle>{name}</DialogTitle>
+                <CircularProgress size={50} />
+                Loading...
+            </Dialog>
+        );
+
     return (
         <Dialog onClose={handleClose} open={open}>
             <DialogTitle>{name}</DialogTitle>
@@ -25,12 +40,12 @@ const AlbumInfoDialog = ({ handleClose, open, album: { name = '', tracks = { ite
 
 AlbumInfoDialog.propTypes = {
     open: PropTypes.bool,
-    album: albumDetailsType,
+    data: albumDetailsType,
 };
 
 AlbumInfoDialog.defaultProps = {
     open: false,
-    album: {
+    data: {
         name: '',
         trackes: { items: [] },
     },

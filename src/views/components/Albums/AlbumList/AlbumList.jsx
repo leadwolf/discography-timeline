@@ -98,7 +98,7 @@ class AlbumList extends React.Component {
                 <AlbumInfoDialog
                     open={openInfoModal}
                     handleClose={this.toggleAlbumInfo}
-                    album={selectedAlbum}
+                    {...selectedAlbum}
                 />
             </div>
         );

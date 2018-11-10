@@ -53,6 +53,11 @@ const searchSpecificAlbumFail = error => ({
     payload: { ...error },
 });
 
+const setSearchSpecificAlbumLoading = loading => ({
+    type: types.ARTIST_ALBUM_SPECIFIC_SEARCH_SET_LOADING,
+    payload: loading,
+});
+
 export {
     searchFail,
     searchSuccess,
@@ -66,4 +71,5 @@ export {
     setFilteredAlbumsByType,
     searchSpecificAlbumSuccess,
     searchSpecificAlbumFail,
+    setSearchSpecificAlbumLoading,
 };
