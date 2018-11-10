@@ -75,6 +75,14 @@ const reducer = (state = initialState, action) => {
                     data: action.payload,
                 },
             };
+        case types.ARTIST_ALBUM__SPECIFIC_SEARCH_FAIL:
+            return {
+                ...state,
+                selectedAlbum: {
+                    ...state.selectedAlbum,
+                    data: undefined,
+                },
+            };
         case types.ARTIST_ALBUM_SPECIFIC_SEARCH_SET_LOADING:
             return {
                 ...state,
