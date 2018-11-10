@@ -91,6 +91,14 @@ const reducer = (state = initialState, action) => {
                     loading: action.payload,
                 },
             };
+        case types.ARTIST_ALBUM_SPECIFIC_SEARCH_SET_ID:
+            return {
+                ...state,
+                selectedAlbum: {
+                    ...state.selectedAlbum,
+                    albumId: action.payload,
+                },
+            };
     }
 };
 

@@ -33,7 +33,7 @@ const Track = ({ track_number, name, explicit, duration_ms, artists, hideArtist 
                 <Grid item xs container direction="column" spacing={16}>
                     <Grid item xs>
                         <Typography variant="subtitle1">{name}</Typography>
-                        <Grid container tem direction="row">
+                        <Grid container item direction="row">
                             {explicit && (
                                 <Typography variant="subtitle1" className="at-explicit">
                                     <Chip label="Explicit" />

@@ -58,6 +58,11 @@ const setSearchSpecificAlbumLoading = loading => ({
     payload: loading,
 });
 
+const setSearchSpecificAlbumId = id => ({
+    type: types.ARTIST_ALBUM_SPECIFIC_SEARCH_SET_ID,
+    payload: id,
+});
+
 export {
     searchFail,
     searchSuccess,
@@ -72,4 +77,5 @@ export {
     searchSpecificAlbumSuccess,
     searchSpecificAlbumFail,
     setSearchSpecificAlbumLoading,
+    setSearchSpecificAlbumId,
 };

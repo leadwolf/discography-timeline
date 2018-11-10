@@ -15,6 +15,7 @@ const ARTIST_ALBUM_SET_FILTERED_BY_TYPE = 'app/artist/album/set/filtered/type';
 const ARTIST_ALBUM__SPECIFIC_SEARCH_SUCCESS = 'app/artist/album/specific/search/success';
 const ARTIST_ALBUM__SPECIFIC_SEARCH_FAIL = 'app/artist/album/specific/search/fail';
 const ARTIST_ALBUM_SPECIFIC_SEARCH_SET_LOADING = 'app/artist/album/specific/search/set/loading';
+const ARTIST_ALBUM_SPECIFIC_SEARCH_SET_ID = 'app/artist/album/specific/search/set/id';
 
 export {
     ARTIST_ALBUM_SEARCH_SUCCESS,
@@ -30,4 +31,5 @@ export {
     ARTIST_ALBUM__SPECIFIC_SEARCH_SUCCESS,
     ARTIST_ALBUM__SPECIFIC_SEARCH_FAIL,
     ARTIST_ALBUM_SPECIFIC_SEARCH_SET_LOADING,
+    ARTIST_ALBUM_SPECIFIC_SEARCH_SET_ID,
 };

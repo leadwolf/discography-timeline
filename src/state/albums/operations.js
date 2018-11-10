@@ -115,11 +115,17 @@ const filterAlbumsByType = albumTypes => (dispatch, getState) => {
 const getAlbumDetails = id => (dispatch, getState) => {
     const {
         albums: {
-            selectedAlbum: { albumId },
+            selectedAlbum: { albumId, data, loading },
         },
     } = getState();
 
-    if (id !== albumId) dispatch(actions.setSearchSpecificAlbumLoading(true));
+    if (loading) return Promise.resolve({ loading: true });
+
+    if (albumId && id === albumId) {
+        return Promise.resolve(data);
+    }
+
+    dispatch(actions.setSearchSpecificAlbumLoading(true));
 
     return spotifyApi
         .getAlbum(id, { market: 'US' })
@@ -128,6 +134,7 @@ const getAlbumDetails = id => (dispatch, getState) => {
 
             dispatch(actions.searchSpecificAlbumSuccess({ ...body }));
             dispatch(actions.setSearchSpecificAlbumLoading(false));
+            dispatch(actions.setSearchSpecificAlbumId(id));
             return Promise.resolve(body);
         })
         .catch(error => {
