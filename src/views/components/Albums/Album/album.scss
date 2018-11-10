@@ -70,6 +70,20 @@
             display: flex;
             flex-direction: column;
 
+            .album-content-info {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                .album-content-info-item {
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
             .alternatives-container {
                 .content-container {
                     display: flex;

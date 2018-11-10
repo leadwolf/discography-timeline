@@ -62,14 +62,20 @@ const Album = ({
             )}
 
             <div className="album-content-right">
-                <AlbumLink album={album} />
-
-                {showType && (
-                    <div className="type">
-                        <span className="type-title">Type:</span>
-                        <Chip label={albumTypeToLabel(album_group)} color="primary" />
+                <div className="album-content-info">
+                    <div className="album-content-info-item">
+                        <AlbumLink album={album} />
                     </div>
-                )}
+
+                    <div className="album-content-info-item">
+                        {showType && (
+                            <div className="type">
+                                <span className="type-title">Type:</span>
+                                <Chip label={albumTypeToLabel(album_group)} color="primary" />
+                            </div>
+                        )}
+                    </div>
+                </div>
 
                 {alternatives.length > 0 && (
                     <div className="alternatives-container">
