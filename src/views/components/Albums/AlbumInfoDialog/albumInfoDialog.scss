@@ -1,5 +1,18 @@
-.track-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+@import '../../../../theme.scss';
+
+.album-info-dialog-root.override {
+    .aid-track-list-title {
+        margin: $spacingMidSmall 0px;
+    }
+
+    .aid-app-bar {
+        position: relative;
+    }
+}
+
+@media (min-width: 1281px) {
+    .album-info-dialog-root.override {
+        width: 50vw;
+        max-width: none;
+    }
 }

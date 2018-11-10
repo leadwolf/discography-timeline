@@ -30,6 +30,7 @@ class AlbumList extends React.Component {
         const {
             albums: { total, items, filteredItems, initialized, selectedAlbum },
             showType,
+            currentArtistId,
         } = this.props;
         const { openInfoModal } = this.state;
 
@@ -99,6 +100,7 @@ class AlbumList extends React.Component {
                     open={openInfoModal}
                     handleClose={this.toggleAlbumInfo}
                     {...selectedAlbum}
+                    currentArtistId={currentArtistId}
                 />
             </div>
         );
@@ -112,10 +114,12 @@ AlbumList.propTypes = {
     }).isRequired,
     showType: PropTypes.bool.isRequired,
     searchSpecificAlbum: PropTypes.func,
+    currentArtistId: PropTypes.string,
 };
 
 AlbumList.defaultProps = {
     searchSpecificAlbum: () => undefined,
+    currentArtistId: '',
 };
 
 export { AlbumList };

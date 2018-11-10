@@ -70,7 +70,11 @@ class Artist extends React.Component {
             artists: { selectedArtist, initializedSelectedArtist },
             albums,
             searchSpecificAlbum,
+            match: {
+                params: { id },
+            },
         } = this.props;
+
         const { album_types } = this.state;
 
         if (!initializedSelectedArtist) {
@@ -101,6 +105,7 @@ class Artist extends React.Component {
                                 albums={albums}
                                 showType={album_types.length > 1}
                                 searchSpecificAlbum={searchSpecificAlbum}
+                                currentArtistId={id}
                             />
                         </div>
                     </div>
