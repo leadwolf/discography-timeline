@@ -12,6 +12,8 @@ const theme = createMuiTheme({
     },
 });
 
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+
 const ThemeProvider = ({ children }) => (
     <MuiThemeProvider theme={theme}>
         <CssBaseline>{children}</CssBaseline>
