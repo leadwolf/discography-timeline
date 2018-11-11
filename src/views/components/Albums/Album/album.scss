@@ -42,6 +42,9 @@
     }
 
     .album-content-container {
+        display: flex;
+        flex-direction: column;
+
         .album-art-container {
             display: flex;
             flex-direction: row;
@@ -84,7 +87,7 @@
             }
 
             .alternatives-container {
-                .content-container {
+                .alt-content-container {
                     display: flex;
                     flex-direction: column;
 
@@ -92,6 +95,22 @@
                         background-color: #000000;
                         margin-bottom: 5px;
                     }
+                }
+            }
+        }
+    }
+
+    .album-content-bottom {
+        .alternatives-container {
+            display: none;
+
+            .alt-content-container {
+                display: flex;
+                flex-direction: column;
+
+                .divider {
+                    background-color: #000000;
+                    margin-bottom: 5px;
                 }
             }
         }
@@ -135,7 +154,27 @@
 */
 
     @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-        //CSS
+        .album-content-container {
+            display: flex;
+            flex-direction: row;
+
+            .album-content-right {
+                .album-content-info {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
+            .alternatives-container {
+                display: none;
+            }
+        }
+
+        .album-content-bottom {
+            .alternatives-container {
+                display: inline;
+            }
+        }
     }
 
     /* 
@@ -150,6 +189,28 @@
 
         .title.mini {
             font-size: $fontSizeTitleTabletMini;
+        }
+
+        .album-content-container {
+            display: flex;
+            flex-direction: row;
+
+            .album-content-right {
+                .album-content-info {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
+            .alternatives-container {
+                display: none;
+            }
+        }
+
+        .album-content-bottom {
+            .alternatives-container {
+                display: inline;
+            }
         }
     }
 

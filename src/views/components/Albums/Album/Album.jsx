@@ -40,86 +40,95 @@ const Album = ({
     },
     classes,
     handleInfoClick,
-}) => (
-    <div className="album-timeline-container">
-        <div className={`title ${mini ? 'mini' : ''}`}>{name}</div>
+}) => {
+    const getAlternatives = () => {
+        if (!alternatives || !alternatives.length) return null;
 
-        {artists.map(
-            artist =>
-                artist.id !== currentArtistId &&
-                !hideArtistName && <ArtistLink key={artist.id} artist={artist} />
-        )}
+        return (
+            <div className="alternatives-container">
+                <ExpansionPanel classes={{ root: classes.expansionPanel }}>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon classes={{ root: classes.expandIcon }} />}
+                    >
+                        <Typography>
+                            {`${alternatives.length} alternative version${
+                                alternatives.length > 1 ? 's' : ''
+                            }`}
+                        </Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails classes={{ root: 'alt-content-container' }}>
+                        {alternatives.map((alt, index) => (
+                            <React.Fragment key={alt.id}>
+                                <Album
+                                    album={alt}
+                                    showType={showType}
+                                    mini
+                                    hideArtistName
+                                    handleInfoClick={handleInfoClick}
+                                />
+                                {index < alternatives.length - 1 && (
+                                    <Divider classes={{ root: 'divider' }} />
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+            </div>
+        );
+    };
 
-        <div className="track-count">{`${total_tracks} track${total_tracks > 1 ? 's' : ''}`}</div>
+    return (
+        <div className="album-timeline-container">
+            <div className={`title ${mini ? 'mini' : ''}`}>{name}</div>
 
-        <div className={`album-content-container ${mini ? 'mini' : ''}`}>
-            {images.length > 0 && (
-                <div className="album-art-container">
-                    <img
-                        className={`album-art  ${mini ? 'mini' : ''}`}
-                        alt={name}
-                        src={mini && images.length > 1 ? images[1].url : images[0].url}
-                    />
-                </div>
+            {artists.map(
+                artist =>
+                    artist.id !== currentArtistId &&
+                    !hideArtistName && <ArtistLink key={artist.id} artist={artist} />
             )}
 
-            <div className="album-content-right">
-                <div className="album-content-info">
-                    <div className="album-content-info-item">
-                        <AlbumLink album={album} />
-                    </div>
+            <div className="track-count">{`${total_tracks} track${
+                total_tracks > 1 ? 's' : ''
+            }`}</div>
 
-                    <div className="album-content-info-item">
-                        <AlbumInfoButton onClick={() => handleInfoClick(id)} />
-                    </div>
-
-                    <div className="album-content-info-item">
-                        {showType && (
-                            <div className="type">
-                                <span className="type-title">Type:</span>
-                                <Chip label={albumTypeToLabel(album_group)} color="primary" />
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                {alternatives.length > 0 && (
-                    <div className="alternatives-container">
-                        <ExpansionPanel classes={{ root: classes.expansionPanel }}>
-                            <ExpansionPanelSummary
-                                expandIcon={
-                                    <ExpandMoreIcon classes={{ root: classes.expandIcon }} />
-                                }
-                            >
-                                <Typography>
-                                    {`${alternatives.length} alternative version${
-                                        alternatives.length > 1 ? 's' : ''
-                                    }`}
-                                </Typography>
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails classes={{ root: 'content-container' }}>
-                                {alternatives.map((alt, index) => (
-                                    <React.Fragment key={alt.id}>
-                                        <Album
-                                            album={alt}
-                                            showType={showType}
-                                            mini
-                                            hideArtistName
-                                            handleInfoClick={handleInfoClick}
-                                        />
-                                        {index < alternatives.length - 1 && (
-                                            <Divider classes={{ root: 'divider' }} />
-                                        )}
-                                    </React.Fragment>
-                                ))}
-                            </ExpansionPanelDetails>
-                        </ExpansionPanel>
+            <div className={`album-content-container ${mini ? 'mini' : ''}`}>
+                {images.length > 0 && (
+                    <div className="album-art-container">
+                        <img
+                            className={`album-art  ${mini ? 'mini' : ''}`}
+                            alt={name}
+                            src={mini && images.length > 1 ? images[1].url : images[0].url}
+                        />
                     </div>
                 )}
+
+                <div className="album-content-right">
+                    <div className="album-content-info">
+                        <div className="album-content-info-item">
+                            <AlbumLink album={album} />
+                        </div>
+
+                        <div className="album-content-info-item">
+                            <AlbumInfoButton onClick={() => handleInfoClick(id)} />
+                        </div>
+
+                        <div className="album-content-info-item">
+                            {showType && (
+                                <div className="type">
+                                    <span className="type-title">Type:</span>
+                                    <Chip label={albumTypeToLabel(album_group)} color="primary" />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {getAlternatives()}
+                </div>
             </div>
+            <div className="album-content-bottom">{getAlternatives()}</div>
         </div>
-    </div>
-);
+    );
+};
 
 Album.propTypes = {
     album: albumType.isRequired,
