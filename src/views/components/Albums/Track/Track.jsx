@@ -11,7 +11,7 @@ import moment from 'moment';
 
 import { trackPropShape } from '../types';
 
-const Track = ({ track_number, name, explicit, duration_ms, artists, hideArtist }) => {
+const Track = ({ track_number, name, explicit, duration_ms, artists, hideArtistIds }) => {
     return (
         <Grid
             container
@@ -39,15 +39,17 @@ const Track = ({ track_number, name, explicit, duration_ms, artists, hideArtist 
                                     <Chip label="Explicit" />
                                 </Typography>
                             )}
-                            {artists.filter(artist => artist.id !== hideArtist).map(artist => (
-                                <Typography
-                                    key={artist.id}
-                                    variant="subtitle1"
-                                    className="at-artist"
-                                >
-                                    {artist.name}
-                                </Typography>
-                            ))}
+                            {artists
+                                .filter(artist => !hideArtistIds.includes(artist.id))
+                                .map(artist => (
+                                    <Typography
+                                        key={artist.id}
+                                        variant="subtitle1"
+                                        className="at-artist"
+                                    >
+                                        {artist.name}
+                                    </Typography>
+                                ))}
                         </Grid>
                     </Grid>
                 </Grid>
@@ -61,10 +63,10 @@ const Track = ({ track_number, name, explicit, duration_ms, artists, hideArtist 
     );
 };
 
-Track.propTypes = { ...trackPropShape, hideArtist: PropTypes.string };
+Track.propTypes = { ...trackPropShape, hideArtistIds: PropTypes.arrayOf(PropTypes.string) };
 
 Track.defaultProps = {
-    hideArtist: '',
+    hideArtist: [],
 };
 
 export { Track };
