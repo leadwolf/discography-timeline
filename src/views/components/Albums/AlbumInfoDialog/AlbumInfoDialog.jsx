@@ -51,7 +51,7 @@ const AlbumInfoDialog = ({ handleClose, open, loading, data, fullScreen }) => {
         return (
             <DialogContent>
                 <Typography variant="h6" className="aid-track-list-title">
-                    Track list
+                    Tracklist
                 </Typography>
 
                 {tracks.items.map(track => (
