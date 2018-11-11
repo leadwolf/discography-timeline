@@ -17,7 +17,7 @@ import React from 'react';
 import { Track } from '../Track';
 import { albumDetailsType } from '../types';
 
-const AlbumInfoDialog = ({ handleClose, open, loading, data, currentArtistId, fullScreen }) => {
+const AlbumInfoDialog = ({ handleClose, open, loading, data, fullScreen }) => {
     const getContent = () => {
         if (loading) {
             return (
@@ -45,7 +45,9 @@ const AlbumInfoDialog = ({ handleClose, open, loading, data, currentArtistId, fu
             );
         }
 
-        const { tracks = { items: [] } } = data;
+        const { tracks = { items: [] }, artists = [] } = data;
+        const hideArtistIds = artists.map(a => a.id);
+
         return (
             <DialogContent>
                 <Typography variant="h6" className="aid-track-list-title">
@@ -53,7 +55,7 @@ const AlbumInfoDialog = ({ handleClose, open, loading, data, currentArtistId, fu
                 </Typography>
 
                 {tracks.items.map(track => (
-                    <Track key={track.id} {...track} hideArtist={currentArtistId} />
+                    <Track key={track.id} {...track} hideArtistIds={hideArtistIds} />
                 ))}
             </DialogContent>
         );
@@ -86,7 +88,6 @@ const AlbumInfoDialog = ({ handleClose, open, loading, data, currentArtistId, fu
 AlbumInfoDialog.propTypes = {
     open: PropTypes.bool,
     data: albumDetailsType,
-    currentArtistId: PropTypes.string,
     fullScreen: PropTypes.bool, // from withMobileDialog
 };
 
@@ -96,7 +97,6 @@ AlbumInfoDialog.defaultProps = {
         name: '',
         tracks: { items: [] },
     },
-    currentArtistId: '',
     fullScreen: false,
 };
 
