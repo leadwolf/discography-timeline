@@ -67,34 +67,29 @@
             }
         }
 
-        .album-content-right {
+        .album-content-info {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: $spacingMidSmall 0px;
 
-            .album-content-info {
+            .album-content-info-item {
+                padding: $spacingSmall;
                 display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                margin: $spacingMidSmall 0px;
-
-                .album-content-info-item {
-                    padding: $spacingSmall;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                }
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
+        }
 
-            .alternatives-container {
-                .alt-content-container {
-                    display: flex;
-                    flex-direction: column;
+        .alternatives-container {
+            .alt-content-container {
+                display: flex;
+                flex-direction: column;
 
-                    .divider {
-                        background-color: #000000;
-                        margin-bottom: 5px;
-                    }
+                .divider {
+                    background-color: #000000;
+                    margin-bottom: 5px;
                 }
             }
         }
@@ -158,11 +153,9 @@
             display: flex;
             flex-direction: row;
 
-            .album-content-right {
-                .album-content-info {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
+            .album-content-info {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .alternatives-container {
@@ -195,11 +188,9 @@
             display: flex;
             flex-direction: row;
 
-            .album-content-right {
-                .album-content-info {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
+            .album-content-info {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .alternatives-container {

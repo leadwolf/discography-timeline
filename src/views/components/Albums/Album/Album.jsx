@@ -102,28 +102,26 @@ const Album = ({
                     </div>
                 )}
 
-                <div className="album-content-right">
-                    <div className="album-content-info">
-                        <div className="album-content-info-item">
-                            <AlbumLink album={album} />
-                        </div>
-
-                        <div className="album-content-info-item">
-                            <AlbumInfoButton onClick={() => handleInfoClick(id)} />
-                        </div>
-
-                        <div className="album-content-info-item">
-                            {showType && (
-                                <div className="type">
-                                    <span className="type-title">Type:</span>
-                                    <Chip label={albumTypeToLabel(album_group)} color="primary" />
-                                </div>
-                            )}
-                        </div>
+                <div className="album-content-info">
+                    <div className="album-content-info-item">
+                        <AlbumLink album={album} />
                     </div>
 
-                    {getAlternatives()}
+                    <div className="album-content-info-item">
+                        <AlbumInfoButton onClick={() => handleInfoClick(id)} />
+                    </div>
+
+                    <div className="album-content-info-item">
+                        {showType && (
+                            <div className="type">
+                                <span className="type-title">Type:</span>
+                                <Chip label={albumTypeToLabel(album_group)} color="primary" />
+                            </div>
+                        )}
+                    </div>
                 </div>
+
+                {getAlternatives()}
             </div>
             <div className="album-content-bottom">{getAlternatives()}</div>
         </div>
