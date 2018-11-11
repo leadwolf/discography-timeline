@@ -61,6 +61,8 @@ const AlbumInfoDialog = ({ handleClose, open, loading, data, fullScreen }) => {
         );
     };
 
+    const showName = !loading && data && data.name;
+
     return (
         <Dialog
             onClose={handleClose}
@@ -73,7 +75,7 @@ const AlbumInfoDialog = ({ handleClose, open, loading, data, fullScreen }) => {
                     <IconButton color="inherit" onClick={handleClose} aria-label="Close">
                         <CloseIcon />
                     </IconButton>
-                    {data && (
+                    {showName && (
                         <Typography variant="h6" color="inherit">
                             {data.name}
                         </Typography>
