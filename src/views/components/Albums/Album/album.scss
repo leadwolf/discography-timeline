@@ -3,13 +3,8 @@
 .album-timeline-container {
     color: #000000;
 
-    .title {
-        font-size: $fontSizeTitle;
+    .a-title.override {
         font-weight: bold;
-    }
-
-    .title.mini {
-        font-size: $fontSizeTitleMini;
     }
 
     .type {
@@ -134,13 +129,6 @@
 */
 
     @media (min-width: 768px) and (max-width: 1024px) {
-        .title {
-            font-size: $fontSizeTitleTablet;
-        }
-
-        .title.mini {
-            font-size: $fontSizeTitleTabletMini;
-        }
     }
 
     /* 
@@ -176,14 +164,6 @@
 */
 
     @media (min-width: 481px) and (max-width: 767px) {
-        .title {
-            font-size: $fontSizeTitleTablet;
-        }
-
-        .title.mini {
-            font-size: $fontSizeTitleTabletMini;
-        }
-
         .album-content-container {
             display: flex;
             flex-direction: row;
@@ -211,14 +191,6 @@
 */
 
     @media (min-width: 320px) and (max-width: 480px) {
-        .title {
-            font-size: $fontSizeTitleMobile;
-        }
-
-        .title.mini {
-            font-size: $fontSizeTitleMobileMini;
-        }
-
         .album-content-container {
             .album-art-container {
                 .album-art {

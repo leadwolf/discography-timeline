@@ -79,7 +79,9 @@ const Album = ({
 
     return (
         <div className="album-timeline-container">
-            <div className={`title ${mini ? 'mini' : ''}`}>{name}</div>
+            <Typography variant={mini ? 'h4' : 'h3'} color="inherit" className="a-title override">
+                {name}
+            </Typography>
 
             {artists.map(
                 artist =>
