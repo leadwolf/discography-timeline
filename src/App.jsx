@@ -1,4 +1,5 @@
 import './App.scss';
+import './config/googleAnalytics';
 
 import moment from 'moment';
 import React from 'react';
